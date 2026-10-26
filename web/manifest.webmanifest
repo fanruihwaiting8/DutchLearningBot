@@ -1,0 +1,16 @@
+{
+  "name": "荷兰语 B1 备考助手",
+  "short_name": "荷兰语B1",
+  "description": "荷兰语 B1 入籍考试备考:词汇闪卡、双向选择、拼写练习与就绪度看板",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f6fb",
+  "theme_color": "#3b6cf6",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

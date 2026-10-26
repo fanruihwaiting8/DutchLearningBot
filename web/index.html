@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover + 下面的 safe-area 内边距,适配 iPhone 刘海/灵动岛 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#3b6cf6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="荷兰语B1">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>荷兰语 B1 备考助手</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button id="btn-back" class="icon-btn" hidden aria-label="返回">‹</button>
+  <div class="topbar-title">
+    <h1 id="page-title">荷兰语 B1 备考看板</h1>
+    <p id="page-sub">Inburgeringsexamen · 读 / 听 / 写 / 说 + KNM + ONA</p>
+  </div>
+</header>
+
+<main id="view" class="view"></main>
+
+<!-- 底部主导航:手机单手可达 -->
+<nav class="tabbar">
+  <button class="tab" data-route="dashboard">
+    <span class="tab-ico">◎</span><span>看板</span>
+  </button>
+  <button class="tab" data-route="woorden">
+    <span class="tab-ico">◆</span><span>词汇</span>
+  </button>
+  <button class="tab" data-route="stats">
+    <span class="tab-ico">▤</span><span>统计</span>
+  </button>
+</nav>
+
+<!-- ======== 模板:词汇练习页 ======== -->
+<template id="tpl-woorden">
+  <div class="toolbar">
+    <select id="theme-select" class="select" aria-label="主题"></select>
+    <div class="seg" id="mode-seg">
+      <button class="seg-btn" data-mode="flash">闪卡</button>
+      <button class="seg-btn" data-mode="choice">选择</button>
+      <button class="seg-btn" data-mode="spell">拼写</button>
+    </div>
+  </div>
+  <div id="practice"></div>
+</template>
+
+<!-- ======== 模板:闪卡 ======== -->
+<template id="tpl-flash">
+  <div class="card tap-card" id="flash-card">
+    <div class="card-head">
+      <span class="muted" id="flash-progress"></span>
+      <span class="ok-tag" id="flash-mastered"></span>
+    </div>
+    <div class="card-body">
+      <div class="word-nl" id="flash-nl"></div>
+      <button class="speak-btn" id="flash-speak">🔊 朗读</button>
+      <div class="flash-back" id="flash-back" hidden>
+        <div class="word-zh" id="flash-zh"></div>
+        <div class="ex-nl" id="flash-ex-nl"></div>
+        <div class="ex-zh" id="flash-ex-zh"></div>
+        <button class="speak-btn ghost" id="flash-speak-ex" hidden>🔊 朗读例句</button>
+      </div>
+      <p class="hint" id="flash-hint">点击卡片翻面</p>
+    </div>
+  </div>
+  <div class="row-btns">
+    <button class="btn grey" id="flash-prev">上一张</button>
+    <button class="btn green" id="flash-master">标记已掌握</button>
+    <button class="btn" id="flash-next">下一张</button>
+  </div>
+</template>
+
+<!-- data.js 由 tools/build_web_data.py 从 data/vocabulary.json 生成 -->
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  // Service Worker 仅在 http(s) 下注册(file:// 会报错),用于离线缓存
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+</script>
+</body>
+</html>

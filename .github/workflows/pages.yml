@@ -1,0 +1,44 @@
+name: Deploy web to GitHub Pages
+
+# 把 web/ 目录（纯静态：index.html + styles.css + data.js + app.js + PWA 文件）
+# 发布到 GitHub Pages。推送到 main 时自动部署，也可在 Actions 页手动触发。
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只保留一个部署，新的推送取消排队中的旧任务
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # enablement: true 让 action 在 Pages 未启用时自动启用并设为 Actions 部署模式，
+      # 避免首次运行报 "Get Pages site failed ... Not Found"
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload web/ as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

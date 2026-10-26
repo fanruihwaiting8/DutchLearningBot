@@ -1,0 +1,683 @@
+// 本文件由 tools/build_web_data.py 从 data/vocabulary.json 自动生成,请勿手改。
+// 改词库请编辑 data/vocabulary.json,然后重新执行该脚本。
+window.VOCAB = [
+ {
+  "nl": "hallo",
+  "zh": "你好",
+  "cat": "问候与礼貌",
+  "ex_nl": "Hallo, hoe gaat het?",
+  "ex_zh": "你好,你最近怎么样?"
+ },
+ {
+  "nl": "goedemorgen",
+  "zh": "早上好",
+  "cat": "问候与礼貌",
+  "ex_nl": "Goedemorgen, meneer.",
+  "ex_zh": "早上好,先生。"
+ },
+ {
+  "nl": "goedemiddag",
+  "zh": "下午好",
+  "cat": "问候与礼貌",
+  "ex_nl": "Goedemiddag, mevrouw.",
+  "ex_zh": "下午好,女士。"
+ },
+ {
+  "nl": "goedenavond",
+  "zh": "晚上好",
+  "cat": "问候与礼貌",
+  "ex_nl": "Goedenavond allemaal.",
+  "ex_zh": "大家晚上好。"
+ },
+ {
+  "nl": "dag",
+  "zh": "再见/你好",
+  "cat": "问候与礼貌",
+  "ex_nl": "Dag, tot morgen!",
+  "ex_zh": "再见,明天见!"
+ },
+ {
+  "nl": "tot ziens",
+  "zh": "再见",
+  "cat": "问候与礼貌",
+  "ex_nl": "Tot ziens en bedankt.",
+  "ex_zh": "再见,谢谢。"
+ },
+ {
+  "nl": "alsjeblieft",
+  "zh": "请/给你",
+  "cat": "问候与礼貌",
+  "ex_nl": "Een koffie, alsjeblieft.",
+  "ex_zh": "请给我一杯咖啡。"
+ },
+ {
+  "nl": "dank je wel",
+  "zh": "谢谢你",
+  "cat": "问候与礼貌",
+  "ex_nl": "Dank je wel voor je hulp.",
+  "ex_zh": "谢谢你的帮助。"
+ },
+ {
+  "nl": "sorry",
+  "zh": "对不起",
+  "cat": "问候与礼貌",
+  "ex_nl": "Sorry, ik ben te laat.",
+  "ex_zh": "对不起,我迟到了。"
+ },
+ {
+  "nl": "ja",
+  "zh": "是的",
+  "cat": "问候与礼貌",
+  "ex_nl": "Ja, dat klopt.",
+  "ex_zh": "是的,没错。"
+ },
+ {
+  "nl": "nee",
+  "zh": "不",
+  "cat": "问候与礼貌",
+  "ex_nl": "Nee, dank je.",
+  "ex_zh": "不,谢谢。"
+ },
+ {
+  "nl": "misschien",
+  "zh": "也许",
+  "cat": "问候与礼貌",
+  "ex_nl": "Misschien morgen.",
+  "ex_zh": "也许明天吧。"
+ },
+ {
+  "nl": "een",
+  "zh": "一",
+  "cat": "数字",
+  "ex_nl": "Ik heb een appel.",
+  "ex_zh": "我有一个苹果。"
+ },
+ {
+  "nl": "twee",
+  "zh": "二",
+  "cat": "数字",
+  "ex_nl": "Twee koffie, alsjeblieft.",
+  "ex_zh": "请来两杯咖啡。"
+ },
+ {
+  "nl": "drie",
+  "zh": "三",
+  "cat": "数字",
+  "ex_nl": "Ik heb drie broers.",
+  "ex_zh": "我有三个兄弟。"
+ },
+ {
+  "nl": "vier",
+  "zh": "四",
+  "cat": "数字",
+  "ex_nl": "Het is vier uur.",
+  "ex_zh": "现在四点。"
+ },
+ {
+  "nl": "vijf",
+  "zh": "五",
+  "cat": "数字",
+  "ex_nl": "Vijf euro, alsjeblieft.",
+  "ex_zh": "五欧元,谢谢。"
+ },
+ {
+  "nl": "zes",
+  "zh": "六",
+  "cat": "数字",
+  "ex_nl": "Zes dagen per week.",
+  "ex_zh": "每周六天。"
+ },
+ {
+  "nl": "zeven",
+  "zh": "七",
+  "cat": "数字",
+  "ex_nl": "De week heeft zeven dagen.",
+  "ex_zh": "一周有七天。"
+ },
+ {
+  "nl": "acht",
+  "zh": "八",
+  "cat": "数字",
+  "ex_nl": "Ik sta om acht uur op.",
+  "ex_zh": "我八点起床。"
+ },
+ {
+  "nl": "negen",
+  "zh": "九",
+  "cat": "数字",
+  "ex_nl": "Negen plus een is tien.",
+  "ex_zh": "九加一是十。"
+ },
+ {
+  "nl": "tien",
+  "zh": "十",
+  "cat": "数字",
+  "ex_nl": "Ik heb tien vingers.",
+  "ex_zh": "我有十根手指。"
+ },
+ {
+  "nl": "familie",
+  "zh": "家庭",
+  "cat": "家庭与人",
+  "ex_nl": "Mijn familie is groot.",
+  "ex_zh": "我的家庭很大。"
+ },
+ {
+  "nl": "moeder",
+  "zh": "母亲",
+  "cat": "家庭与人",
+  "ex_nl": "Mijn moeder kookt lekker.",
+  "ex_zh": "我妈妈做饭很好吃。"
+ },
+ {
+  "nl": "vader",
+  "zh": "父亲",
+  "cat": "家庭与人",
+  "ex_nl": "Mijn vader werkt hard.",
+  "ex_zh": "我爸爸工作很努力。"
+ },
+ {
+  "nl": "kind",
+  "zh": "孩子",
+  "cat": "家庭与人",
+  "ex_nl": "Het kind speelt buiten.",
+  "ex_zh": "孩子在外面玩。"
+ },
+ {
+  "nl": "vriend",
+  "zh": "朋友",
+  "cat": "家庭与人",
+  "ex_nl": "Hij is mijn beste vriend.",
+  "ex_zh": "他是我最好的朋友。"
+ },
+ {
+  "nl": "man",
+  "zh": "男人/丈夫",
+  "cat": "家庭与人",
+  "ex_nl": "De man leest een boek.",
+  "ex_zh": "那个男人在读书。"
+ },
+ {
+  "nl": "vrouw",
+  "zh": "女人/妻子",
+  "cat": "家庭与人",
+  "ex_nl": "De vrouw zingt mooi.",
+  "ex_zh": "那个女人唱得很好。"
+ },
+ {
+  "nl": "broer",
+  "zh": "兄弟",
+  "cat": "家庭与人",
+  "ex_nl": "Mijn broer is jonger.",
+  "ex_zh": "我弟弟比我小。"
+ },
+ {
+  "nl": "zus",
+  "zh": "姐妹",
+  "cat": "家庭与人",
+  "ex_nl": "Mijn zus studeert.",
+  "ex_zh": "我姐姐在上学。"
+ },
+ {
+  "nl": "brood",
+  "zh": "面包",
+  "cat": "食物与饮料",
+  "ex_nl": "Ik eet brood met kaas.",
+  "ex_zh": "我吃面包配奶酪。"
+ },
+ {
+  "nl": "kaas",
+  "zh": "奶酪",
+  "cat": "食物与饮料",
+  "ex_nl": "Nederlandse kaas is bekend.",
+  "ex_zh": "荷兰奶酪很有名。"
+ },
+ {
+  "nl": "water",
+  "zh": "水",
+  "cat": "食物与饮料",
+  "ex_nl": "Mag ik water, alsjeblieft?",
+  "ex_zh": "可以给我水吗?"
+ },
+ {
+  "nl": "koffie",
+  "zh": "咖啡",
+  "cat": "食物与饮料",
+  "ex_nl": "Ik drink graag koffie.",
+  "ex_zh": "我喜欢喝咖啡。"
+ },
+ {
+  "nl": "thee",
+  "zh": "茶",
+  "cat": "食物与饮料",
+  "ex_nl": "Wil je thee of koffie?",
+  "ex_zh": "你要茶还是咖啡?"
+ },
+ {
+  "nl": "melk",
+  "zh": "牛奶",
+  "cat": "食物与饮料",
+  "ex_nl": "Melk in de koffie, graag.",
+  "ex_zh": "咖啡里加点牛奶,谢谢。"
+ },
+ {
+  "nl": "appel",
+  "zh": "苹果",
+  "cat": "食物与饮料",
+  "ex_nl": "Een appel per dag.",
+  "ex_zh": "一天一个苹果。"
+ },
+ {
+  "nl": "vlees",
+  "zh": "肉",
+  "cat": "食物与饮料",
+  "ex_nl": "Ik eet geen vlees.",
+  "ex_zh": "我不吃肉。"
+ },
+ {
+  "nl": "vis",
+  "zh": "鱼",
+  "cat": "食物与饮料",
+  "ex_nl": "De vis is heel vers.",
+  "ex_zh": "这鱼很新鲜。"
+ },
+ {
+  "nl": "groente",
+  "zh": "蔬菜",
+  "cat": "食物与饮料",
+  "ex_nl": "Eet veel groente.",
+  "ex_zh": "多吃蔬菜。"
+ },
+ {
+  "nl": "rood",
+  "zh": "红色",
+  "cat": "颜色",
+  "ex_nl": "De auto is rood.",
+  "ex_zh": "这辆车是红色的。"
+ },
+ {
+  "nl": "blauw",
+  "zh": "蓝色",
+  "cat": "颜色",
+  "ex_nl": "De lucht is blauw.",
+  "ex_zh": "天空是蓝色的。"
+ },
+ {
+  "nl": "groen",
+  "zh": "绿色",
+  "cat": "颜色",
+  "ex_nl": "Het gras is groen.",
+  "ex_zh": "草是绿色的。"
+ },
+ {
+  "nl": "geel",
+  "zh": "黄色",
+  "cat": "颜色",
+  "ex_nl": "De zon is geel.",
+  "ex_zh": "太阳是黄色的。"
+ },
+ {
+  "nl": "zwart",
+  "zh": "黑色",
+  "cat": "颜色",
+  "ex_nl": "Ik draag een zwarte jas.",
+  "ex_zh": "我穿着一件黑色外套。"
+ },
+ {
+  "nl": "wit",
+  "zh": "白色",
+  "cat": "颜色",
+  "ex_nl": "De muur is wit.",
+  "ex_zh": "墙是白色的。"
+ },
+ {
+  "nl": "vandaag",
+  "zh": "今天",
+  "cat": "时间与日期",
+  "ex_nl": "Vandaag is het maandag.",
+  "ex_zh": "今天是星期一。"
+ },
+ {
+  "nl": "morgen",
+  "zh": "明天",
+  "cat": "时间与日期",
+  "ex_nl": "Tot morgen!",
+  "ex_zh": "明天见!"
+ },
+ {
+  "nl": "gisteren",
+  "zh": "昨天",
+  "cat": "时间与日期",
+  "ex_nl": "Gisteren regende het.",
+  "ex_zh": "昨天下雨了。"
+ },
+ {
+  "nl": "week",
+  "zh": "星期/周",
+  "cat": "时间与日期",
+  "ex_nl": "Volgende week ben ik vrij.",
+  "ex_zh": "下周我有空。"
+ },
+ {
+  "nl": "maand",
+  "zh": "月份",
+  "cat": "时间与日期",
+  "ex_nl": "Deze maand is druk.",
+  "ex_zh": "这个月很忙。"
+ },
+ {
+  "nl": "jaar",
+  "zh": "年",
+  "cat": "时间与日期",
+  "ex_nl": "Gelukkig nieuwjaar!",
+  "ex_zh": "新年快乐!"
+ },
+ {
+  "nl": "uur",
+  "zh": "小时/点钟",
+  "cat": "时间与日期",
+  "ex_nl": "Het is drie uur.",
+  "ex_zh": "现在三点。"
+ },
+ {
+  "nl": "nu",
+  "zh": "现在",
+  "cat": "时间与日期",
+  "ex_nl": "Ik heb nu geen tijd.",
+  "ex_zh": "我现在没时间。"
+ },
+ {
+  "nl": "zijn",
+  "zh": "是(动词)",
+  "cat": "常用动词",
+  "ex_nl": "Ik ben moe.",
+  "ex_zh": "我累了。"
+ },
+ {
+  "nl": "hebben",
+  "zh": "有",
+  "cat": "常用动词",
+  "ex_nl": "Ik heb een vraag.",
+  "ex_zh": "我有一个问题。"
+ },
+ {
+  "nl": "gaan",
+  "zh": "去",
+  "cat": "常用动词",
+  "ex_nl": "Ik ga naar huis.",
+  "ex_zh": "我要回家。"
+ },
+ {
+  "nl": "komen",
+  "zh": "来",
+  "cat": "常用动词",
+  "ex_nl": "Kom je ook?",
+  "ex_zh": "你也来吗?"
+ },
+ {
+  "nl": "eten",
+  "zh": "吃",
+  "cat": "常用动词",
+  "ex_nl": "We eten om zes uur.",
+  "ex_zh": "我们六点吃饭。"
+ },
+ {
+  "nl": "drinken",
+  "zh": "喝",
+  "cat": "常用动词",
+  "ex_nl": "Ik wil iets drinken.",
+  "ex_zh": "我想喝点东西。"
+ },
+ {
+  "nl": "spreken",
+  "zh": "说",
+  "cat": "常用动词",
+  "ex_nl": "Spreek je Nederlands?",
+  "ex_zh": "你会说荷兰语吗?"
+ },
+ {
+  "nl": "werken",
+  "zh": "工作",
+  "cat": "常用动词",
+  "ex_nl": "Ik werk in Amsterdam.",
+  "ex_zh": "我在阿姆斯特丹工作。"
+ },
+ {
+  "nl": "wonen",
+  "zh": "居住",
+  "cat": "常用动词",
+  "ex_nl": "Ik woon in Rotterdam.",
+  "ex_zh": "我住在鹿特丹。"
+ },
+ {
+  "nl": "leren",
+  "zh": "学习",
+  "cat": "常用动词",
+  "ex_nl": "Ik leer Nederlands.",
+  "ex_zh": "我在学荷兰语。"
+ },
+ {
+  "nl": "kopen",
+  "zh": "买",
+  "cat": "常用动词",
+  "ex_nl": "Ik koop brood.",
+  "ex_zh": "我买面包。"
+ },
+ {
+  "nl": "begrijpen",
+  "zh": "理解",
+  "cat": "常用动词",
+  "ex_nl": "Ik begrijp het niet.",
+  "ex_zh": "我不明白。"
+ },
+ {
+  "nl": "groot",
+  "zh": "大的",
+  "cat": "常用形容词",
+  "ex_nl": "Het huis is groot.",
+  "ex_zh": "这房子很大。"
+ },
+ {
+  "nl": "klein",
+  "zh": "小的",
+  "cat": "常用形容词",
+  "ex_nl": "De kat is klein.",
+  "ex_zh": "这只猫很小。"
+ },
+ {
+  "nl": "goed",
+  "zh": "好的",
+  "cat": "常用形容词",
+  "ex_nl": "Alles is goed.",
+  "ex_zh": "一切都好。"
+ },
+ {
+  "nl": "slecht",
+  "zh": "坏的",
+  "cat": "常用形容词",
+  "ex_nl": "Het weer is slecht.",
+  "ex_zh": "天气很糟。"
+ },
+ {
+  "nl": "mooi",
+  "zh": "漂亮的",
+  "cat": "常用形容词",
+  "ex_nl": "Wat een mooie dag!",
+  "ex_zh": "多美好的一天!"
+ },
+ {
+  "nl": "duur",
+  "zh": "贵的",
+  "cat": "常用形容词",
+  "ex_nl": "Deze jas is duur.",
+  "ex_zh": "这件外套很贵。"
+ },
+ {
+  "nl": "goedkoop",
+  "zh": "便宜的",
+  "cat": "常用形容词",
+  "ex_nl": "Het is heel goedkoop.",
+  "ex_zh": "这很便宜。"
+ },
+ {
+  "nl": "warm",
+  "zh": "暖和的",
+  "cat": "常用形容词",
+  "ex_nl": "Het is warm vandaag.",
+  "ex_zh": "今天很暖和。"
+ },
+ {
+  "nl": "koud",
+  "zh": "冷的",
+  "cat": "常用形容词",
+  "ex_nl": "Het water is koud.",
+  "ex_zh": "水很凉。"
+ },
+ {
+  "nl": "nieuw",
+  "zh": "新的",
+  "cat": "常用形容词",
+  "ex_nl": "Ik heb een nieuwe fiets.",
+  "ex_zh": "我有一辆新自行车。"
+ },
+ {
+  "nl": "huis",
+  "zh": "房子",
+  "cat": "地点与出行",
+  "ex_nl": "Ik ga naar huis.",
+  "ex_zh": "我回家。"
+ },
+ {
+  "nl": "station",
+  "zh": "车站",
+  "cat": "地点与出行",
+  "ex_nl": "Waar is het station?",
+  "ex_zh": "车站在哪里?"
+ },
+ {
+  "nl": "trein",
+  "zh": "火车",
+  "cat": "地点与出行",
+  "ex_nl": "De trein is te laat.",
+  "ex_zh": "火车晚点了。"
+ },
+ {
+  "nl": "fiets",
+  "zh": "自行车",
+  "cat": "地点与出行",
+  "ex_nl": "Ik ga met de fiets.",
+  "ex_zh": "我骑自行车去。"
+ },
+ {
+  "nl": "straat",
+  "zh": "街道",
+  "cat": "地点与出行",
+  "ex_nl": "In welke straat woon je?",
+  "ex_zh": "你住在哪条街?"
+ },
+ {
+  "nl": "winkel",
+  "zh": "商店",
+  "cat": "地点与出行",
+  "ex_nl": "De winkel is dicht.",
+  "ex_zh": "商店关门了。"
+ },
+ {
+  "nl": "school",
+  "zh": "学校",
+  "cat": "地点与出行",
+  "ex_nl": "De kinderen gaan naar school.",
+  "ex_zh": "孩子们去上学。"
+ },
+ {
+  "nl": "ziekenhuis",
+  "zh": "医院",
+  "cat": "地点与出行",
+  "ex_nl": "Het ziekenhuis is dichtbij.",
+  "ex_zh": "医院就在附近。"
+ },
+ {
+  "nl": "links",
+  "zh": "左边",
+  "cat": "地点与出行",
+  "ex_nl": "Ga naar links.",
+  "ex_zh": "往左走。"
+ },
+ {
+  "nl": "rechts",
+  "zh": "右边",
+  "cat": "地点与出行",
+  "ex_nl": "De winkel is rechts.",
+  "ex_zh": "商店在右边。"
+ },
+ {
+  "nl": "hoe gaat het",
+  "zh": "你好吗",
+  "cat": "常用短语",
+  "ex_nl": "Hoe gaat het met je?",
+  "ex_zh": "你最近怎么样?"
+ },
+ {
+  "nl": "ik weet het niet",
+  "zh": "我不知道",
+  "cat": "常用短语",
+  "ex_nl": "Sorry, ik weet het niet.",
+  "ex_zh": "抱歉,我不知道。"
+ },
+ {
+  "nl": "hoeveel kost het",
+  "zh": "这个多少钱",
+  "cat": "常用短语",
+  "ex_nl": "Hoeveel kost het?",
+  "ex_zh": "这个多少钱?"
+ },
+ {
+  "nl": "waar is",
+  "zh": "……在哪里",
+  "cat": "常用短语",
+  "ex_nl": "Waar is de wc?",
+  "ex_zh": "洗手间在哪里?"
+ },
+ {
+  "nl": "tot straks",
+  "zh": "一会儿见",
+  "cat": "常用短语",
+  "ex_nl": "Ik ga nu, tot straks!",
+  "ex_zh": "我先走了,一会儿见!"
+ },
+ {
+  "nl": "geen probleem",
+  "zh": "没问题",
+  "cat": "常用短语",
+  "ex_nl": "Geen probleem, hoor.",
+  "ex_zh": "没问题的。"
+ },
+ {
+  "nl": "ik hou van jou",
+  "zh": "我爱你",
+  "cat": "常用短语",
+  "ex_nl": "Ik hou van jou.",
+  "ex_zh": "我爱你。"
+ },
+ {
+  "nl": "veel plezier",
+  "zh": "玩得开心",
+  "cat": "常用短语",
+  "ex_nl": "Veel plezier vanavond!",
+  "ex_zh": "今晚玩得开心!"
+ },
+ {
+  "nl": "eet smakelijk",
+  "zh": "祝好胃口",
+  "cat": "常用短语",
+  "ex_nl": "Eet smakelijk allemaal!",
+  "ex_zh": "大家好胃口!"
+ },
+ {
+  "nl": "tot de volgende keer",
+  "zh": "下次见",
+  "cat": "常用短语",
+  "ex_nl": "Bedankt, tot de volgende keer.",
+  "ex_zh": "谢谢,下次见。"
+ }
+];
