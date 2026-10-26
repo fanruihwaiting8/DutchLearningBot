@@ -29,11 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # enablement: true 让 action 在 Pages 未启用时自动启用并设为 Actions 部署模式，
-      # 避免首次运行报 "Get Pages site failed ... Not Found"
+      # 注意：不用 enablement: true。该参数会调用 API 自动开启 Pages，
+      # 在本仓库会因 token 权限不足而失败；Pages 已在仓库 Settings → Pages
+      # 里手动把 Source 设为 "GitHub Actions"，这里只需读取配置。
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload web/ as Pages artifact
         uses: actions/upload-pages-artifact@v3
