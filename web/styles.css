@@ -295,6 +295,55 @@ html, body {
 
 .foot-note { font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 14px; }
 
+/* ---------- 每日学习 ---------- */
+.card.clickable { cursor: pointer; user-select: none; }
+.card.clickable:active { background: #eef2fd; }
+
+.q-text { font-size: 16px; line-height: 1.6; margin: 0; text-align: left; }
+
+.lezen-body { text-align: left; padding: 10px 0 2px; }
+.lezen-text { font-size: 15px; line-height: 1.8; margin: 0; white-space: pre-wrap; }
+.lezen-text.zh {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.chip-zone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f4f6fb;
+  border: 1px solid var(--line);
+  margin-bottom: 10px;
+}
+.chip-zone.answer { min-height: 48px; align-content: flex-start; }
+.chip-zone.answer.ok { background: #eaf7f1; border-color: var(--ok); }
+.chip-zone.answer.bad { background: #fdecef; border-color: var(--bad); }
+.chip-ph { font-size: 13px; color: var(--muted); align-self: center; }
+
+.chip {
+  font: inherit;
+  font-size: 15px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  line-height: 1.2;
+}
+.chip:active { background: #e7ebf4; }
+.chip.placed {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
 /* ---------- 大屏(平板/桌面)把看板排成两列 ---------- */
 @media (min-width: 560px) {
   .subj-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }

@@ -1,0 +1,409 @@
+{
+  "passages": [
+    {
+      "id": "lz01",
+      "title": "Een nieuwe woning zoeken",
+      "theme": "住房与租赁",
+      "text": "Sinds twee maanden zoekt Hassan een andere woning. Zijn huidige appartement is te klein geworden, want zijn vrouw en dochter wonen nu ook in Nederland. Elke avond kijkt hij op internet naar nieuwe advertenties. De huurprijzen in het centrum zijn erg hoog, daarom zoekt hij nu in een buurt verder van de stad. Vorige week mocht hij eindelijk een woning bekijken. Het appartement had drie kamers en een kleine tuin. De verhuurder vertelde dat de huur 950 euro per maand is, inclusief gas en licht. Hassan moet ook een borg van twee maanden betalen. Hij vond de woning mooi, maar hij wil eerst met zijn vrouw praten. Morgen geeft hij antwoord.",
+      "zh_text": "两个月以来,哈桑一直在找新住处。他现在的公寓太小了,因为妻子和女儿现在也住在荷兰。他每天晚上都上网看新房源。市中心租金很高,所以他现在在离市区较远的社区找。上周他终于去看了一套房:三个房间,还带个小花园。房东说月租 950 欧元,含燃气和电费,另外还要付两个月的押金。他挺喜欢这套房,但想先和妻子商量,明天给答复。",
+      "questions": [
+        {
+          "q": "Waarom zoekt Hassan een andere woning?",
+          "options": ["Zijn woning is te klein voor zijn familie.", "Hij wil in het centrum wonen.", "Zijn verhuurder verkoopt het appartement."],
+          "answer": 0,
+          "zh": "文中说公寓变得太小,因为妻子和女儿也来荷兰住了。"
+        },
+        {
+          "q": "Wat is inbegrepen bij de huur van 950 euro?",
+          "options": ["De borg.", "Gas en licht.", "Het internet."],
+          "answer": 1,
+          "zh": "房东说 inclusief gas en licht(含燃气和电)。"
+        },
+        {
+          "q": "Wat doet Hassan morgen?",
+          "options": ["Hij bekijkt een andere woning.", "Hij betaalt de borg.", "Hij laat weten of hij de woning neemt."],
+          "answer": 2,
+          "zh": "最后一句 Morgen geeft hij antwoord,即明天答复要不要租。"
+        }
+      ]
+    },
+    {
+      "id": "lz02",
+      "title": "Naar de huisarts",
+      "theme": "健康与就医",
+      "text": "Mevrouw Chen heeft al vijf dagen hoofdpijn. Ze slaapt slecht en voelt zich moe. Eerst dacht ze dat het door stress op haar werk kwam, maar de pijn ging niet weg. Daarom belde ze de huisarts. De assistente vroeg wat haar klachten waren en maakte een afspraak voor dezelfde middag. In de praktijk deed de arts een kort onderzoek. Hij vond niets ernstigs, maar hij gaf haar wel advies: minder achter de computer zitten, elke dag een half uur bewegen en meer water drinken. Een recept kreeg ze niet. Als de hoofdpijn na een week nog niet beter is, moet ze opnieuw bellen. Dan verwijst de arts haar naar een specialist.",
+      "zh_text": "陈女士头疼已经五天了,睡不好、觉得疲倦。起初她以为是工作压力导致的,但疼痛没有消失,于是她打电话给家庭医生。助理问了她的症状,给她约了当天下午。医生做了简短检查,没发现严重问题,但给了建议:少坐电脑前、每天活动半小时、多喝水。医生没有开药。如果一周后还不好转,她要再打电话,医生会转诊给专科医生。",
+      "questions": [
+        {
+          "q": "Wat dacht mevrouw Chen eerst over haar hoofdpijn?",
+          "options": ["Dat het door haar werk kwam.", "Dat ze een specialist nodig had.", "Dat ze te weinig water dronk."],
+          "answer": 0,
+          "zh": "她起初以为是工作压力(stress op haar werk)引起的。"
+        },
+        {
+          "q": "Wat kreeg mevrouw Chen van de huisarts?",
+          "options": ["Medicijnen.", "Advies, maar geen recept.", "Een verwijzing naar het ziekenhuis."],
+          "answer": 1,
+          "zh": "文中明确 Een recept kreeg ze niet,只给了建议。"
+        },
+        {
+          "q": "Wanneer moet ze weer bellen?",
+          "options": ["Morgen.", "Na een maand.", "Als het na een week niet beter gaat."],
+          "answer": 2,
+          "zh": "如果一周后头疼仍未好转就再打电话。"
+        }
+      ]
+    },
+    {
+      "id": "lz03",
+      "title": "Solliciteren bij een supermarkt",
+      "theme": "工作与求职",
+      "text": "Op het raam van de supermarkt hing een papier met een vacature: medewerker voor de avonduren, zestien uur per week. Omar werkt op dit moment parttime in een restaurant, maar hij wil graag meer uren en een vast contract. Hij stuurde zijn cv en een korte sollicitatiebrief per e-mail. Twee dagen later werd hij gebeld voor een gesprek. De manager vroeg naar zijn werkervaring en of hij in het weekend kon werken. Omar zei dat hij op zaterdag beschikbaar is, maar op zondag niet, omdat hij dan naar zijn taalcursus gaat. Dat was geen probleem. Hij mag volgende week beginnen met een proeftijd van een maand.",
+      "zh_text": "超市窗上贴着一张招聘:晚班员工,每周十六小时。奥马尔目前在一家餐馆做兼职,但他希望工时更多并有固定合同。他用邮件发了简历和一封简短求职信。两天后超市打电话约他面谈。经理问了他的工作经验以及周末能否上班。奥马尔说周六可以,周日不行,因为要去上语言课。这不是问题。他下周就能开始,有一个月试用期。",
+      "questions": [
+        {
+          "q": "Wat wil Omar het liefst?",
+          "options": ["Minder uren werken.", "Meer uren en een vast contract.", "In een restaurant blijven."],
+          "answer": 1,
+          "zh": "文中说他想要更多工时和固定合同(meer uren en een vast contract)。"
+        },
+        {
+          "q": "Waarom kan Omar niet op zondag werken?",
+          "options": ["Hij volgt dan een taalcursus.", "Hij werkt dan in het restaurant.", "De supermarkt is dan dicht."],
+          "answer": 0,
+          "zh": "他说周日要去上语言课(taalcursus)。"
+        },
+        {
+          "q": "Hoe lang duurt de proeftijd?",
+          "options": ["Een week.", "Zestien uur.", "Een maand."],
+          "answer": 2,
+          "zh": "最后一句说试用期为一个月。"
+        }
+      ]
+    },
+    {
+      "id": "lz04",
+      "title": "De trein had vertraging",
+      "theme": "交通与出行",
+      "text": "Maandagochtend wilde Lucia met de trein van zeven uur naar haar werk in Rotterdam. Op het bord stond dat de trein twintig minuten vertraging had. Door werkzaamheden aan het spoor reden er die week minder treinen. Ze besloot niet te wachten, maar met de bus naar Delft te reizen en daar over te stappen. Dat kostte haar uiteindelijk bijna een uur extra. Om kwart over negen kwam ze op kantoor aan. Haar leidinggevende was niet boos, want veel collega's hadden hetzelfde probleem. Toch wil Lucia dit niet nog een keer. Vanaf woensdag gaat ze met de fiets naar het station in de buurt, want vanaf dat station rijden de treinen normaal.",
+      "zh_text": "周一早上,露西娅想坐七点的火车去鹿特丹上班。公告板显示火车晚点二十分钟,因为那周铁路施工,班次减少。她决定不等,改坐公交到代尔夫特换乘,结果多花了近一小时,九点十五才到办公室。主管没生气,因为很多同事都遇到同样问题。但露西娅不想再这样,从周三起她骑车去附近另一个车站,那边的列车正常运行。",
+      "questions": [
+        {
+          "q": "Waarom reden er minder treinen?",
+          "options": ["Door een ongeluk.", "Door werkzaamheden aan het spoor.", "Door het slechte weer."],
+          "answer": 1,
+          "zh": "文中说 door werkzaamheden aan het spoor(铁路施工)。"
+        },
+        {
+          "q": "Hoe reisde Lucia die ochtend verder?",
+          "options": ["Met de bus en daarna de trein.", "Met de auto van een collega.", "Met de fiets naar Rotterdam."],
+          "answer": 0,
+          "zh": "她坐公交到代尔夫特再换乘火车。"
+        },
+        {
+          "q": "Wat verandert Lucia vanaf woensdag?",
+          "options": ["Ze begint later met werken.", "Ze werkt thuis.", "Ze neemt de trein van een ander station."],
+          "answer": 2,
+          "zh": "她骑车去附近另一个车站坐车。"
+        }
+      ]
+    },
+    {
+      "id": "lz05",
+      "title": "Een klacht over de buren",
+      "theme": "住房与租赁",
+      "text": "In het appartement boven Ahmed wonen sinds maart twee studenten. Bijna elk weekend geven zij een feest. De muziek staat hard tot diep in de nacht en Ahmed kan dan niet slapen. Eerst heeft hij vriendelijk aangeklopt en gevraagd of het zachter kon. Dat hielp een paar weken. Daarna begon het lawaai weer. Nu heeft Ahmed een brief geschreven aan de verhuurder. Daarin legt hij uit wanneer het te luid is en wat hij zelf al heeft geprobeerd. De verhuurder heeft beloofd met de studenten te praten. Als er daarna niets verandert, kan Ahmed een klacht indienen bij de gemeente. Hij hoopt dat dat niet nodig is, want hij vindt ruzie met buren vervelend.",
+      "zh_text": "三月以来,艾哈迈德楼上住了两个学生,几乎每个周末都开派对,音乐一直很响到深夜,他睡不着。他先礼貌地上门请对方小声些,管用了几周,后来噪音又开始了。现在他写信给房东,说明什么时候太吵、自己已经尝试过什么。房东承诺会跟学生谈。如果之后没有改变,他可以向市政厅投诉。他希望不必走到这一步,因为他不喜欢和邻居闹矛盾。",
+      "questions": [
+        {
+          "q": "Wat deed Ahmed als eerste tegen het lawaai?",
+          "options": ["Hij vroeg de buren persoonlijk om zachter te doen.", "Hij belde de politie.", "Hij schreef de gemeente aan."],
+          "answer": 0,
+          "zh": "他先亲自上门礼貌请求对方把声音放小。"
+        },
+        {
+          "q": "Wat staat er in de brief aan de verhuurder?",
+          "options": ["Dat hij wil verhuizen.", "Wanneer het te luid is en wat hij al heeft gedaan.", "Dat hij minder huur wil betalen."],
+          "answer": 1,
+          "zh": "信里写了吵闹的时间和他已尝试的办法。"
+        },
+        {
+          "q": "Wat vindt Ahmed van ruzie met buren?",
+          "options": ["Dat het normaal is.", "Dat het soms nodig is.", "Dat het vervelend is."],
+          "answer": 2,
+          "zh": "最后一句 hij vindt ruzie met buren vervelend。"
+        }
+      ]
+    },
+    {
+      "id": "lz06",
+      "title": "Een afspraak bij de gemeente",
+      "theme": "政府与手续",
+      "text": "Wie in Nederland verhuist, moet dat binnen vijf dagen doorgeven aan de gemeente. Vaak kan dat digitaal, maar soms moet je toch naar het loket. Dat geldt bijvoorbeeld als je nog geen DigiD hebt of als je uit het buitenland komt. Voor een bezoek aan het loket moet je altijd eerst online een afspraak maken; zonder afspraak word je niet geholpen. Neem je legitimatie mee en, als je gaat huren, een kopie van het huurcontract. Het doorgeven van een verhuizing is gratis. Een nieuw paspoort of identiteitskaart kost wel geld en is pas na ongeveer een week klaar. Let op: een paspoort voor kinderen is maar vijf jaar geldig.",
+      "zh_text": "在荷兰搬家后必须在五天内告知市政厅。多数情况可在线办理,但有时仍需去窗口,例如还没有 DigiD 或来自国外。去窗口前必须先在线预约,没预约不受理。要带身份证件,如果是租房,还要带租房合同复印件。办理迁址登记免费,但新护照或身份证要收费,大约一周后才能取。注意:儿童护照只有五年有效期。",
+      "questions": [
+        {
+          "q": "Binnen hoeveel dagen moet je een verhuizing doorgeven?",
+          "options": ["Binnen vijf dagen.", "Binnen een week.", "Binnen een maand."],
+          "answer": 0,
+          "zh": "第一句说搬家后五天内要告知市政厅。"
+        },
+        {
+          "q": "Wat gebeurt er als je zonder afspraak naar het loket gaat?",
+          "options": ["Je moet langer wachten.", "Je wordt niet geholpen.", "Je betaalt extra."],
+          "answer": 1,
+          "zh": "文中说 zonder afspraak word je niet geholpen。"
+        },
+        {
+          "q": "Wat is gratis bij de gemeente?",
+          "options": ["Een nieuw paspoort.", "Een identiteitskaart.", "Het doorgeven van je verhuizing."],
+          "answer": 2,
+          "zh": "迁址登记免费,护照和身份证要钱。"
+        }
+      ]
+    },
+    {
+      "id": "lz07",
+      "title": "Taalcursus in de bibliotheek",
+      "theme": "教育与培训",
+      "text": "De bibliotheek van Eindhoven organiseert sinds vorig jaar een taalcafe. Elke dinsdagavond komen daar mensen samen die Nederlands leren. Er zijn geen lessen en geen huiswerk: je praat gewoon een uur met vrijwilligers over het nieuws, je werk of je familie. Deelnemen is gratis en je hoeft je niet in te schrijven. Volgens de organisator helpt vooral de rust: niemand verbetert elke fout, dus mensen durven meer te zeggen. Wie serieus wil werken aan grammatica, kan beter een cursus volgen bij een taalschool. Toch merken veel deelnemers dat ze na een paar maanden taalcafe makkelijker spreken aan de telefoon en bij de dokter.",
+      "zh_text": "埃因霍温图书馆从去年起办语言咖啡角。每周二晚,学荷兰语的人聚在一起,没有课也没有作业,只是和志愿者聊一小时新闻、工作或家庭。参加免费,也不用报名。组织者说关键是氛围轻松:没人逐句纠错,大家才敢多说。想认真练语法的人最好去语言学校上课。不过许多参加者发现,参加几个月后,打电话和看医生时说话更轻松了。",
+      "questions": [
+        {
+          "q": "Wat gebeurt er in het taalcafe?",
+          "options": ["Je praat een uur met vrijwilligers.", "Je krijgt grammaticales.", "Je maakt samen huiswerk."],
+          "answer": 0,
+          "zh": "就是和志愿者聊一个小时,没课没作业。"
+        },
+        {
+          "q": "Wat moet je doen om mee te doen?",
+          "options": ["Je inschrijven en betalen.", "Niets, je kunt gewoon komen.", "Eerst een test doen."],
+          "answer": 1,
+          "zh": "免费且无需报名(gratis, niet inschrijven)。"
+        },
+        {
+          "q": "Waarom durven deelnemers meer te zeggen?",
+          "options": ["Omdat ze al goed Nederlands spreken.", "Omdat ze een diploma krijgen.", "Omdat niet elke fout verbeterd wordt."],
+          "answer": 2,
+          "zh": "因为没人逐句纠错,气氛放松。"
+        }
+      ]
+    },
+    {
+      "id": "lz08",
+      "title": "Boodschappen en korting",
+      "theme": "购物与消费",
+      "text": "Veel Nederlanders kijken voor het boodschappen doen eerst in de reclamefolder of in een app. Zo zien ze welke producten die week in de aanbieding zijn. Sommige supermarkten geven alleen korting met een klantenkaart. Let wel op: twee pakken kopen is niet altijd goedkoper, want het is geen voordeel als je het tweede pak weggooit. Groente en fruit van het seizoen zijn bijna altijd het goedkoopst. Wie weinig tijd heeft, kan online bestellen en thuis laten bezorgen, maar dan betaal je meestal bezorgkosten. Een praktische tip is om met een lijstje naar de winkel te gaan. Mensen die zonder lijstje boodschappen doen, kopen gemiddeld meer dan ze nodig hebben.",
+      "zh_text": "很多荷兰人买东西前会先看广告册或 App,了解本周哪些商品在打折。有些超市只有用会员卡才有折扣。要注意:买两包不一定更便宜,如果第二包最后扔掉就不划算。应季的蔬果几乎总是最便宜。时间少的人可以网上下单送货到家,但通常要付配送费。一个实用建议是带购物清单去超市——不带清单的人平均买得比需要的多。",
+      "questions": [
+        {
+          "q": "Hoe weten mensen wat in de aanbieding is?",
+          "options": ["Via de folder of een app.", "Via de klantenservice.", "Via de bezorger."],
+          "answer": 0,
+          "zh": "通过广告册或 App 查看本周特价。"
+        },
+        {
+          "q": "Waarom is twee pakken kopen niet altijd voordelig?",
+          "options": ["Het duurt langer bij de kassa.", "Je gooit het tweede pak misschien weg.", "Je hebt dan geen klantenkaart nodig."],
+          "answer": 1,
+          "zh": "如果第二包被扔掉就不是真省钱。"
+        },
+        {
+          "q": "Wat is het effect van boodschappen doen zonder lijstje?",
+          "options": ["Je bent sneller klaar.", "Je krijgt meer korting.", "Je koopt meer dan nodig."],
+          "answer": 2,
+          "zh": "不带清单的人平均买得更多。"
+        }
+      ]
+    },
+    {
+      "id": "lz09",
+      "title": "Thuiswerken: handig of niet?",
+      "theme": "工作与求职",
+      "text": "Sinds een paar jaar werken veel mensen een of twee dagen per week thuis. Voor werknemers met een lange reistijd is dat een groot voordeel: zij besparen tijd en reiskosten en staan niet in de file. Werkgevers zien ook nadelen. Nieuwe collega's leren het werk langzamer en overleg gaat minder makkelijk dan op kantoor. Daarom spreken veel bedrijven nu vaste dagen af waarop iedereen aanwezig is, bijvoorbeeld dinsdag en donderdag. Belangrijk is wel een goede werkplek thuis: een rustige kamer, een stoel op de juiste hoogte en een stabiele internetverbinding. Wie aan de keukentafel werkt, krijgt vaak na een tijdje rug- of nekklachten.",
+      "zh_text": "近几年很多人每周有一两天在家办公。对通勤时间长的员工是大好处:省时间、省路费、不堵车。雇主也看到缺点:新同事上手更慢,沟通不如在办公室方便。所以很多公司现在约定固定到岗日,比如周二和周四。在家办公需要好的工位:安静的房间、高度合适的椅子、稳定的网络。总在餐桌上工作的人,时间久了常出现背痛或颈痛。",
+      "questions": [
+        {
+          "q": "Voor wie is thuiswerken vooral voordelig?",
+          "options": ["Voor wie lang moet reizen.", "Voor nieuwe collega's.", "Voor werkgevers."],
+          "answer": 0,
+          "zh": "通勤时间长的员工省时间与路费。"
+        },
+        {
+          "q": "Welk nadeel noemen werkgevers?",
+          "options": ["Werknemers werken te veel.", "Overleg gaat moeilijker.", "De reiskosten stijgen."],
+          "answer": 1,
+          "zh": "文中说沟通/商议不如在办公室方便。"
+        },
+        {
+          "q": "Wat kan er gebeuren als je aan de keukentafel werkt?",
+          "options": ["Je werkt sneller.", "Je internet valt uit.", "Je krijgt rug- of nekklachten."],
+          "answer": 2,
+          "zh": "最后一句提到背部或颈部不适。"
+        }
+      ]
+    },
+    {
+      "id": "lz10",
+      "title": "Afval scheiden in de wijk",
+      "theme": "日常生活",
+      "text": "In de wijk van Fatima staan sinds kort nieuwe containers. Papier, glas, plastic en gft moeten apart worden weggegooid; alleen wat overblijft mag in de grijze container. De gemeente heeft een kaartje gestuurd met de regels en de dagen waarop het afval wordt opgehaald. Wie zijn afval verkeerd aanbiedt, kan een boete krijgen. Grof afval, zoals een oude bank of een kapotte koelkast, wordt niet op straat meegenomen. Daarvoor maak je een afspraak of je brengt het zelf naar het milieupark. Fatima vond het eerst lastig, maar nu heeft ze in de keuken twee kleine bakken staan. Zo kost het scheiden haar bijna geen extra tijd.",
+      "zh_text": "法蒂玛所在的小区最近放了新垃圾桶。纸、玻璃、塑料和厨余要分开投放,剩下的才放进灰色桶。市政厅寄来卡片写明规则和收运日期。乱投放可能被罚款。大件垃圾如旧沙发、坏冰箱不会在街上收走,要预约或自己送到环保中心。法蒂玛起初觉得麻烦,但现在她在厨房放了两个小桶,分类几乎不额外花时间。",
+      "questions": [
+        {
+          "q": "Wat mag in de grijze container?",
+          "options": ["Alleen wat niet gescheiden kan worden.", "Papier en glas.", "Grof afval."],
+          "answer": 0,
+          "zh": "只有无法分类剩下的部分才放灰桶。"
+        },
+        {
+          "q": "Wat moet je doen met een oude bank?",
+          "options": ["Hem op straat zetten.", "Een afspraak maken of hem zelf wegbrengen.", "Hem in de gft-container doen."],
+          "answer": 1,
+          "zh": "大件垃圾需预约或自己送到环保中心。"
+        },
+        {
+          "q": "Hoe is het scheiden voor Fatima nu?",
+          "options": ["Nog steeds erg lastig.", "Duurder dan eerst.", "Bijna geen extra werk."],
+          "answer": 2,
+          "zh": "她用两个小桶后几乎不额外费时。"
+        }
+      ]
+    },
+    {
+      "id": "lz11",
+      "title": "Een pakket dat niet aankwam",
+      "theme": "购物与消费",
+      "text": "Twee weken geleden bestelde Daniel online een telefoonhoesje. Volgens de website zou het pakket binnen drie werkdagen bezorgd worden, maar het kwam niet. In de app van de vervoerder stond wel dat het pakket was afgeleverd bij de buren. Daniel heeft bij alle buren gevraagd, maar niemand had iets ontvangen. Daarom stuurde hij een e-mail naar de winkel met het ordernummer en een korte uitleg. De klantenservice antwoordde na een dag en bood twee mogelijkheden: het geld terug of een nieuw pakket. Daniel koos voor een nieuw pakket, maar vroeg wel om bezorging op een pakketpunt. Dat is voor hem handiger, want hij is 's middags nooit thuis.",
+      "zh_text": "两周前丹尼尔网购了一个手机壳。网站说三个工作日内送达,但没收到。物流 App 显示包裹已交给邻居,可他问遍邻居都说没收到。于是他给商家发邮件,附上订单号和简要说明。客服第二天回复,给出两个选择:退款或重寄。丹尼尔选择重寄,但要求送到自提点,因为他下午从不在家,这样更方便。",
+      "questions": [
+        {
+          "q": "Wat stond er in de app van de vervoerder?",
+          "options": ["Dat het pakket bij de buren was afgeleverd.", "Dat het pakket kwijt was.", "Dat de bezorging was vertraagd."],
+          "answer": 0,
+          "zh": "App 显示包裹交给了邻居。"
+        },
+        {
+          "q": "Wat stuurde Daniel naar de winkel?",
+          "options": ["Een telefoonnummer.", "Een e-mail met zijn ordernummer.", "Een klachtenformulier van de gemeente."],
+          "answer": 1,
+          "zh": "他发邮件并附上订单号。"
+        },
+        {
+          "q": "Waarom wil hij bezorging op een pakketpunt?",
+          "options": ["Dat is goedkoper.", "Dat gaat sneller.", "Hij is 's middags niet thuis."],
+          "answer": 2,
+          "zh": "因为他下午不在家,自提点更方便。"
+        }
+      ]
+    },
+    {
+      "id": "lz12",
+      "title": "Sporten na het werk",
+      "theme": "健康与就医",
+      "text": "Mark zat jarenlang de hele dag achter zijn bureau en bewoog bijna niet. Vorig jaar kreeg hij van de huisarts het advies om meer te bewegen, omdat zijn bloeddruk te hoog was. Eerst ging hij naar de sportschool, maar na een maand stopte hij: het was druk en ver van zijn huis. Toen begon hij met hardlopen in het park naast zijn straat. Drie keer per week loopt hij nu een half uur, ook als het regent. Het belangrijkste is volgens hem een vast moment: direct na het werk, nog voor het eten. Als hij eerst op de bank gaat zitten, komt hij niet meer in beweging. Zijn bloeddruk is nu weer normaal.",
+      "zh_text": "马克多年整天坐在办公桌前,几乎不运动。去年家庭医生建议他多活动,因为血压偏高。他先去健身房,但一个月后就停了:人多且离家远。后来他开始在家附近的公园跑步,现在每周三次、每次半小时,下雨也去。他认为关键是固定时间:下班后立刻去,吃饭之前。如果先坐到沙发上,就再也动不起来了。现在他的血压恢复正常。",
+      "questions": [
+        {
+          "q": "Waarom moest Mark meer bewegen?",
+          "options": ["Zijn bloeddruk was te hoog.", "Hij woog te veel.", "Hij sliep slecht."],
+          "answer": 0,
+          "zh": "医生因血压偏高而建议他多活动。"
+        },
+        {
+          "q": "Waarom stopte hij met de sportschool?",
+          "options": ["Het was te duur.", "Het was druk en ver weg.", "Hij had een blessure."],
+          "answer": 1,
+          "zh": "因为人多而且离家远。"
+        },
+        {
+          "q": "Wat vindt Mark het belangrijkste?",
+          "options": ["Snel lopen.", "Goede schoenen.", "Een vast moment om te sporten."],
+          "answer": 2,
+          "zh": "他认为固定的运动时间最重要。"
+        }
+      ]
+    },
+    {
+      "id": "lz13",
+      "title": "Het weer in Nederland",
+      "theme": "日常生活",
+      "text": "Mensen die net in Nederland wonen, klagen vaak over het weer. Niet zozeer over de kou, maar over de wind en de regen die ineens kan beginnen. In de zomer kan het 's ochtends twintig graden zijn en 's middags koud en nat. Daarom nemen veel Nederlanders altijd een jas of een regenpak mee op de fiets. Een paraplu is minder praktisch, want met harde wind gaat die snel kapot. Handig is de buienradar: in een app zie je per kwartier waar het regent. Wie daar even naar kijkt, kan zijn boodschappen vaak precies in een droog half uur doen. Toch geldt ook hier het oude gezegde: het weer doet uiteindelijk wat het wil.",
+      "zh_text": "刚到荷兰的人常抱怨天气,主要不是冷,而是风大和突然下雨。夏天早上可能二十度,下午却又冷又湿。所以很多荷兰人骑车总带外套或雨衣。雨伞不太实用,大风一吹就坏。好用的是降雨雷达 App,能看到每十五分钟哪里下雨。看一眼就常能挑到不下雨的半小时去买东西。不过老话说得对:天气终究想怎样就怎样。",
+      "questions": [
+        {
+          "q": "Waarover klagen nieuwkomers vooral?",
+          "options": ["Over de wind en de regen.", "Over de kou in de winter.", "Over de hitte in de zomer."],
+          "answer": 0,
+          "zh": "主要抱怨风和突然的降雨,而不是冷。"
+        },
+        {
+          "q": "Waarom is een paraplu minder praktisch?",
+          "options": ["Hij is te zwaar.", "Bij harde wind gaat hij kapot.", "Hij is duur."],
+          "answer": 1,
+          "zh": "大风天雨伞容易损坏。"
+        },
+        {
+          "q": "Wat laat de buienradar zien?",
+          "options": ["De temperatuur van morgen.", "De windrichting per dag.", "Waar het per kwartier regent."],
+          "answer": 2,
+          "zh": "App 显示每十五分钟的降雨位置。"
+        }
+      ]
+    },
+    {
+      "id": "lz14",
+      "title": "Vrijwilligerswerk doen",
+      "theme": "社会与融入",
+      "text": "Veel organisaties in Nederland kunnen niet bestaan zonder vrijwilligers. Denk aan een sportclub, een buurthuis of de bibliotheek. Je krijgt geen salaris, maar soms wel een kleine vergoeding voor je reiskosten. Voor mensen die nieuw zijn in het land is vrijwilligerswerk om twee redenen interessant. Ten eerste oefen je de taal in gewone gesprekken, en dat gaat vaak sneller dan in de les. Ten tweede bouw je een netwerk op; via vrijwilligerswerk hebben al veel mensen later een betaalde baan gevonden. Wie een uitkering ontvangt, moet het werk eerst even melden. Meestal mag het gewoon, zolang het geen werk is dat anders door een werknemer zou worden gedaan.",
+      "zh_text": "荷兰许多机构离不开志愿者,比如体育俱乐部、社区中心或图书馆。志愿者没有工资,有时能报销少量交通费。对新来的人来说,做志愿有两个好处:一是在真实对话中练语言,往往比课堂上更快;二是建立人际网络,不少人后来通过志愿工作找到有薪工作。领救济金的人要先申报,通常是允许的,只要这份活儿不是本应由正式员工来做的。",
+      "questions": [
+        {
+          "q": "Wat kun je als vrijwilliger soms krijgen?",
+          "options": ["Een vergoeding voor reiskosten.", "Een vast salaris.", "Een contract voor een jaar."],
+          "answer": 0,
+          "zh": "没有工资,有时报销交通费。"
+        },
+        {
+          "q": "Waarom gaat de taal sneller vooruit?",
+          "options": ["Omdat je elke dag examens doet.", "Omdat je in gewone gesprekken oefent.", "Omdat je grammatica leert."],
+          "answer": 1,
+          "zh": "在日常真实对话中练习,进步更快。"
+        },
+        {
+          "q": "Wat moet iemand met een uitkering doen?",
+          "options": ["Niets bijzonders.", "Direct stoppen met de uitkering.", "Het vrijwilligerswerk eerst melden."],
+          "answer": 2,
+          "zh": "领救济金的人需先申报志愿工作。"
+        }
+      ]
+    },
+    {
+      "id": "lz15",
+      "title": "Een cursus kiezen",
+      "theme": "教育与培训",
+      "text": "Wie zich wil voorbereiden op het inburgeringsexamen, kan kiezen tussen een taalschool, een online cursus en zelfstudie. Een school heeft vaste lesdagen en een docent die je fouten verbetert; dat werkt goed voor mensen die structuur nodig hebben. Online cursussen zijn flexibel en vaak goedkoper, maar je moet zelf discipline hebben. Bij zelfstudie bepaal je alles zelf, al mis je dan het spreken met anderen. Belangrijk is om vooraf te vragen of een cursus ook examentraining geeft, want het examen test niet alleen taal maar ook kennis van de samenleving. Veel cursisten combineren: twee keer per week les en daarnaast elke dag twintig minuten woorden leren op de telefoon.",
+      "zh_text": "准备入籍融入考试的人可以在语言学校、线上课程和自学之间选择。学校有固定上课日和会纠错的老师,适合需要节奏约束的人。线上课程灵活、常更便宜,但需要自律。自学完全自己安排,但缺少与人对话的机会。重要的是提前问清课程是否包含考试训练,因为考试不只考语言,还考社会常识。很多学员采取组合方式:每周上两次课,另外每天用手机背二十分钟单词。",
+      "questions": [
+        {
+          "q": "Voor wie is een taalschool vooral geschikt?",
+          "options": ["Voor wie structuur nodig heeft.", "Voor wie geen tijd heeft.", "Voor wie al examen heeft gedaan."],
+          "answer": 0,
+          "zh": "学校有固定节奏,适合需要结构的人。"
+        },
+        {
+          "q": "Wat is een nadeel van een online cursus?",
+          "options": ["Hij is altijd duur.", "Je moet zelf discipline hebben.", "Er is geen lesmateriaal."],
+          "answer": 1,
+          "zh": "灵活但需要自律。"
+        },
+        {
+          "q": "Wat test het examen behalve taal?",
+          "options": ["Je werkervaring.", "Je rijvaardigheid.", "Kennis van de samenleving."],
+          "answer": 2,
+          "zh": "还考社会常识(kennis van de samenleving)。"
+        }
+      ]
+    }
+  ]
+}

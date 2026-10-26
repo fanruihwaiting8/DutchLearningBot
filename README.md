@@ -8,7 +8,13 @@
 
 纯静态页面，无后端、无需安装，手机浏览器打开即用；可「添加到主屏幕」当 App 使用，支持离线。
 
-- 📋 **备考看板**：词汇 / 阅读 / 听力 / 写作 / 口语 / KNM / ONA / 语法 八个科目，显示各科就绪度（当前仅「词汇」有内容，其余为后续阶段）。
+- ☀ **每日学习**（默认首页）：每天自动生成固定学习量的任务单，约 20 分钟做完，不含听力。
+  - 15 个新词（学习卡）+ 15 个复习词（荷→中四选一）
+  - 1 篇 B1 短文 + 3 道理解题（可显示中文对照、整篇朗读）
+  - 8 句词序重组（点词块拼句）
+  - 顶部进度条，三段全部做完才算当日达成，并累计**连续打卡天数**（streak）
+  - 任务按日期种子生成：同一天刷新不变，到第二天自动换一批；新词优先没学过的，复习词优先做错过的
+- 📋 **备考看板**：词汇 / 阅读 / 听力 / 写作 / 口语 / KNM / ONA / 语法 八个科目，显示各科就绪度（当前「词汇」「阅读」有内容，其余为后续阶段）。
 - 📇 **闪卡**：正面荷兰语，点击翻面看中文与例句，可标记「已掌握」，支持朗读。
 - 🔀 **双向选择**：随机 荷→中 或 中→荷，四选一自动判分。
 - ✏️ **拼写**：根据中文写出荷兰语，回车提交，答错给出正确拼写并朗读。
@@ -17,7 +23,7 @@
 
 就绪度规则：取最近 20 题，正确率 ≥ 80% 记为达标（与桌面版一致）。
 
-学习进度存在**浏览器本地** `localStorage`（键 `dutch_b1_progress_v2`），换设备或清缓存会丢失，与桌面版进度互不同步。
+学习进度存在**浏览器本地** `localStorage`（答题进度 `dutch_b1_progress_v2`、每日打卡 `dutch_b1_daily_v1`），换设备或清缓存会丢失，与桌面版进度互不同步。
 
 本地预览：
 
@@ -50,11 +56,14 @@ DutchLearningBot/
 ├── ui/                     # 桌面版界面:theme / dashboard / woorden / placeholder
 ├── data/
 │   ├── vocabulary.json     # 词库(唯一数据源,可自行增删)
+│   ├── lezen.json          # 阅读短文 + 理解题
+│   ├── zinnen.json         # 词序重组用的句子
 │   └── progress.json       # 桌面版学习进度(自动生成,已 gitignore)
 ├── tools/
-│   └── build_web_data.py   # 由 vocabulary.json 生成 web/data.js
+│   └── build_web_data.py   # 由上面三个 json 生成 web/data.js
 ├── web/                    # 网页版(GitHub Pages 发布目录)
 │   ├── index.html / styles.css / app.js
+│   ├── daily.js            # 每日学习模块
 │   ├── data.js             # 生成产物,勿手改
 │   └── manifest.webmanifest / icon.svg / sw.js   # PWA
 ├── .github/workflows/pages.yml  # push 到 main 自动部署 web/ 到 Pages
@@ -75,7 +84,9 @@ DutchLearningBot/
 }
 ```
 
-改完**必须**重新生成网页版词库，否则网页看不到新词：
+阅读素材在 `data/lezen.json`（`passages[]`，每篇含荷文、中文对照和 3 道题），重组句子在 `data/zinnen.json`（`sentences[]`，`nl` 不带句末标点）。
+
+改完**必须**重新生成网页版数据，否则网页看不到新内容：
 
 ```bash
 python3 tools/build_web_data.py

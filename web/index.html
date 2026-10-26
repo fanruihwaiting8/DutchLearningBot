@@ -28,6 +28,9 @@
 
 <!-- 底部主导航:手机单手可达 -->
 <nav class="tabbar">
+  <button class="tab" data-route="daily">
+    <span class="tab-ico">☀</span><span>今日</span>
+  </button>
   <button class="tab" data-route="dashboard">
     <span class="tab-ico">◎</span><span>看板</span>
   </button>
@@ -78,9 +81,11 @@
   </div>
 </template>
 
-<!-- data.js 由 tools/build_web_data.py 从 data/vocabulary.json 生成 -->
+<!-- data.js 由 tools/build_web_data.py 从 data/*.json 生成(词库 / 阅读 / 句子) -->
 <script src="data.js"></script>
 <script src="app.js"></script>
+<!-- daily.js 依赖 app.js 暴露的 window.AppBridge,必须放在其后 -->
+<script src="daily.js"></script>
 <script>
   // Service Worker 仅在 http(s) 下注册(file:// 会报错),用于离线缓存
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {

@@ -1,13 +1,14 @@
 /* 荷兰语 B1 备考助手 - Service Worker
    策略:预缓存核心静态资源,运行时「缓存优先 + 后台更新」,离线可用。
    改动静态资源后请把 CACHE 版本号 +1,否则用户可能拿到旧缓存。 */
-const CACHE = 'dutch-b1-v1';
+const CACHE = 'dutch-b1-v2';
 const ASSETS = [
   './',
   './index.html',
   './styles.css',
   './data.js',
   './app.js',
+  './daily.js',
   './icon.svg',
   './manifest.webmanifest',
 ];

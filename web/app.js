@@ -17,9 +17,10 @@
   var READY_THRESHOLD = 0.8; // 达标正确率
   var LS_KEY = 'dutch_b1_progress_v2';
 
+  // [就绪度/路由 key, 名称, 副标题, 'rate'|'soon', 点击跳转路由(默认同 key)]
   var SUBJECT_CARDS = [
     ['woorden', '词汇 Woordenschat', '主题化记忆 · 2000+ 目标', 'rate'],
-    ['lezen', '阅读 Lezen', 'B1 短文理解', 'soon'],
+    ['lezen', '阅读 Lezen', 'B1 短文理解 · 每日 1 篇', 'rate', 'daily-lezen'],
     ['luisteren', '听力 Luisteren', 'B1 语音听辨', 'soon'],
     ['schrijven', '写作 Schrijven', '邮件 / 表单书写', 'soon'],
     ['spreken', '口语 Spreken', '情景对话应答', 'soon'],
@@ -157,6 +158,10 @@
   // ===================== 页面标题 =====================
   var TITLES = {
     dashboard: ['荷兰语 B1 备考看板', 'Inburgeringsexamen · 读 / 听 / 写 / 说 + KNM + ONA'],
+    daily: ['今日学习', '每天固定学习量 · 单词 + 阅读 + 句子'],
+    'daily-words': ['今日单词', '15 个新词 + 15 个复习词'],
+    'daily-lezen': ['今日阅读', '1 篇短文 + 3 道理解题'],
+    'daily-zinnen': ['今日句子', '词序重组 · 8 句'],
     woorden: ['词汇 Woordenschat', '闪卡 / 双向选择 / 拼写 · 作答计入看板'],
     stats: ['学习统计', '进度保存在本机浏览器'],
     soon: ['内容开发中', '后续阶段开放']
@@ -166,7 +171,7 @@
     var t = TITLES[route] || TITLES.dashboard;
     $('page-title').textContent = t[0];
     $('page-sub').textContent = t[1];
-    $('btn-back').hidden = (route === 'dashboard');
+    $('btn-back').hidden = (route === 'dashboard' || route === 'daily');
   }
 
   // ===================== 看板 =====================
@@ -177,15 +182,28 @@
 
     var tip;
     if (ov.sampled === 0) {
-      tip = '先从「词汇」开始:按主题过一遍闪卡,再做双向选择和拼写测验,为后续阅读 / 听力打底。目标词汇量 2000+。';
+      tip = '建议每天先做完「今日学习」:15 个新词 + 15 个复习词 + 1 篇阅读 + 8 句词序重组,约 20 分钟。有余力再去「词汇」自由刷题。';
     } else if (!ov.ready) {
       tip = '继续巩固「词汇」,把最近 ' + RECENT_WINDOW + ' 题正确率提到 80% 以上即算达标;之后阅读、听力、KNM 模块会陆续开放。';
     } else {
       tip = '词汇已达标,基础扎实。后续阶段将开放阅读、听力、写作、口语、KNM 与 ONA 模块,可按看板逐科攻克。';
     }
 
-    var html = '<div class="tip"><div class="tip-label">建议</div>' +
-               '<p class="tip-text">' + esc(tip) + '</p></div><div class="subj-list">';
+    // 今日学习进度卡:看板第一屏就能看到今天还差多少
+    var html = '';
+    if (window.Daily) {
+      var dy = window.Daily.summary();
+      html += '<div class="card clickable" data-go="daily">' +
+        '<div class="card-head"><span>今日学习' + (dy.allDone ? ' · 已达成' : '') + '</span>' +
+        '<span class="muted">' + dy.pct + '%</span></div>' +
+        '<div class="bar"><i style="width:' + dy.pct + '%"></i></div>' +
+        '<p class="foot-note" style="margin-top:10px">' +
+        (dy.allDone ? '今天的单词 / 阅读 / 句子都做完了' : '今日任务 ' + dy.sections + ' / 3 段完成 · 共 ' + dy.got + ' / ' + dy.total + ' 项') +
+        (dy.streak > 0 ? ' · 连续打卡 ' + dy.streak + ' 天 🔥' : '') + '</p></div>';
+    }
+
+    html += '<div class="tip"><div class="tip-label">建议</div>' +
+            '<p class="tip-text">' + esc(tip) + '</p></div><div class="subj-list">';
 
     SUBJECT_CARDS.forEach(function (c) {
       var route = c[0], name = c[1], sub = c[2], kind = c[3];
@@ -201,7 +219,7 @@
         status = '内容开发中(后续阶段开放)';
       }
       html += '<div class="subj ' + (kind === 'rate' ? 'clickable' : 'soon') + '" data-go="' +
-              (kind === 'rate' ? route : 'soon') + '">' +
+              (kind === 'rate' ? (c[4] || route) : 'soon') + '">' +
               '<div class="subj-main"><div class="subj-name">' + esc(name) + '</div>' +
               '<div class="subj-sub">' + esc(sub) + '</div>' +
               '<div class="subj-status" style="color:' + color + '">' + esc(status) + '</div></div>' +
@@ -238,6 +256,7 @@
     var mastered = Store.data.mastered.length;
     var pct = WORDS.length ? Math.round(mastered / WORDS.length * 100) : 0;
     var r = Store.readiness('woorden');
+    var dy = window.Daily ? window.Daily.summary() : null;
 
     $('view').innerHTML =
       '<div class="stat-grid">' +
@@ -245,6 +264,8 @@
       '<div class="stat"><div class="stat-num">' + WORDS.length + '</div><div class="stat-label">词库总量</div></div>' +
       '<div class="stat"><div class="stat-num">' + answered + '</div><div class="stat-label">累计答题</div></div>' +
       '<div class="stat"><div class="stat-num">' + rate + '%</div><div class="stat-label">总体正确率</div></div>' +
+      (dy ? '<div class="stat"><div class="stat-num">' + dy.streak + '</div><div class="stat-label">连续打卡天数</div></div>' +
+            '<div class="stat"><div class="stat-num">' + dy.pct + '%</div><div class="stat-label">今日完成度</div></div>' : '') +
       '</div>' +
       '<div class="card"><div class="card-head"><span>掌握进度</span><span class="muted">' + pct + '%</span></div>' +
       '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
@@ -256,8 +277,9 @@
       (TTS.available ? '' : '<br>当前浏览器不支持语音朗读。') + '</p>';
 
     $('btn-reset').addEventListener('click', function () {
-      if (window.confirm('确定清空已掌握单词与答题记录?')) {
+      if (window.confirm('确定清空已掌握单词、答题记录与每日打卡记录?')) {
         Store.reset();
+        if (window.Daily) window.Daily.reset();
         renderStats();
       }
     });
@@ -550,10 +572,13 @@
     if (route === 'dashboard') renderDashboard();
     else if (route === 'woorden') renderWoorden();
     else if (route === 'stats') renderStats();
+    else if (route.indexOf('daily') === 0 && window.Daily) window.Daily.route(route);
     else renderSoon();
 
     document.querySelectorAll('.tab').forEach(function (t) {
-      t.classList.toggle('active', t.getAttribute('data-route') === route);
+      var r = t.getAttribute('data-route');
+      // daily-words 等子页面也要点亮「今日」tab
+      t.classList.toggle('active', r === route || (r === 'daily' && route.indexOf('daily') === 0));
     });
     window.scrollTo(0, 0);
     // 用 hash 记路由,手机端系统返回手势/返回键才能退回上一页
@@ -566,13 +591,24 @@
   function init() {
     Store.load();
 
+    // 供 daily.js 复用:进度存储、朗读、转义与路由
+    window.AppBridge = {
+      Store: Store,
+      TTS: TTS,
+      esc: esc,
+      shuffle: shuffle,
+      navigate: navigate
+    };
+
     document.querySelectorAll('.tab').forEach(function (t) {
       t.addEventListener('click', function () { navigate(t.getAttribute('data-route')); });
     });
-    $('btn-back').addEventListener('click', function () { navigate('dashboard'); });
+    $('btn-back').addEventListener('click', function () {
+      navigate(current.indexOf('daily-') === 0 ? 'daily' : 'dashboard');
+    });
 
     window.addEventListener('hashchange', function () {
-      var r = (location.hash || '#dashboard').slice(1) || 'dashboard';
+      var r = (location.hash || '#daily').slice(1) || 'daily';
       if (r !== current) navigate(r);
     });
 
@@ -582,7 +618,8 @@
       window.speechSynthesis.onvoiceschanged = function () { TTS.pickVoice(); };
     }
 
-    var start = (location.hash || '#dashboard').slice(1) || 'dashboard';
+    // 默认落在「今日学习」,打开就能直接开练
+    var start = (location.hash || '#daily').slice(1) || 'daily';
     navigate(start);
   }
 
