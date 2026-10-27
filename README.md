@@ -19,11 +19,20 @@ A plain static page: no backend, nothing to install, just open it in a phone bro
 - **Two-way multiple choice**: randomly Dutch -> English or English -> Dutch, four options, scored automatically.
 - **Spelling**: write the Dutch word for an English prompt, submit with Enter; a wrong answer shows the correct spelling and reads it aloud.
 - **Statistics**: mastered count, total answers, accuracy and readiness, with a one-click reset.
+- **Profiles**: the button in the top-right corner switches between up to 8 named profiles, so several people can share one browser; every profile keeps its own mastered words, answer history and day streak. There are no passwords - the name only separates progress on this device.
 - **Speech**: uses the browser Web Speech API (`nl-NL`), so a Dutch voice must be installed in the system or browser.
 
 Readiness rule: take the last 20 answers; 80% or more correct counts as ready (same as the desktop app).
 
-Progress is stored **locally in the browser** via `localStorage` (answer progress in `dutch_b1_progress_v2`, daily streak in `dutch_b1_daily_v1`). It is lost when you switch devices or clear the cache, and it does not sync with the desktop app.
+Progress is stored **locally in the browser** via `localStorage`, namespaced per profile:
+
+| Key | Content |
+| --- | --- |
+| `dutch_b1_users_v1` | the profile list and the active profile id |
+| `dutch_b1_progress_v2__<id>` | that profile's answer progress and mastered words |
+| `dutch_b1_daily_v1__<id>` | that profile's daily plan, history and streak |
+
+Progress saved before profiles existed (the keys without an `__<id>` suffix) is migrated into the first profile on first load, so nothing is lost. All of it is still lost when you switch devices or clear the cache, and it does not sync with the desktop app.
 
 Local preview:
 

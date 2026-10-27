@@ -42,7 +42,7 @@ html, body {
   background: linear-gradient(135deg, var(--primary), #5b7cf6);
   color: #fff;
 }
-.topbar-title { min-width: 0; }
+.topbar-title { min-width: 0; flex: 1; }
 .topbar h1 {
   margin: 0;
   font-size: 17px;
@@ -343,6 +343,62 @@ html, body {
   border-color: var(--primary);
   color: #fff;
 }
+
+/* ---------- Profiles (multi-user) ---------- */
+.user-btn {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.user-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 10px;
+  background: #fff;
+}
+.user-row.current { border-color: var(--primary); background: #eef3ff; }
+.user-pick {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  border: 0;
+  background: transparent;
+  padding: 2px 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text);
+}
+.user-name { font-size: 15px; font-weight: 700; }
+.user-tag { font-size: 11px; font-weight: 700; color: var(--primary); }
+.user-meta { font-size: 12px; color: var(--muted); }
+.user-acts { flex: 0 0 auto; display: flex; gap: 6px; }
+.btn.tiny {
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 10px;
+  border-radius: 9px;
+}
+.btn.primary { background: var(--primary); }
+.user-add { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font-size: 15px;
+  padding: 12px 12px;
+}
+.user-add .btn { flex: 0 0 auto; padding: 12px 18px; }
 
 /* ---------- Wide screens (tablet/desktop): two-column dashboard ---------- */
 @media (min-width: 560px) {

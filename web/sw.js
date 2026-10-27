@@ -3,14 +3,14 @@
    background refresh so the app also works offline.
    Bump the CACHE version whenever a static asset changes, otherwise users may
    keep being served the stale cache. */
-const CACHE = 'dutch-b1-v3';
+const CACHE = 'dutch-b1-v4';
 const ASSETS = [
   './',
   './index.html',
-  './styles.css',
-  './data.js',
-  './app.js',
-  './daily.js',
+  './styles.css?v=2',
+  './data.js?v=2',
+  './app.js?v=2',
+  './daily.js?v=2',
   './icon.svg',
   './manifest.webmanifest',
 ];

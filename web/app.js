@@ -16,6 +16,9 @@
   var RECENT_WINDOW = 20;    // readiness sampling window (same as core/store.py)
   var READY_THRESHOLD = 0.8; // accuracy needed to pass
   var LS_KEY = 'dutch_b1_progress_v2';
+  var USERS_KEY = 'dutch_b1_users_v1';
+  var DAILY_KEY = 'dutch_b1_daily_v1'; // owned by daily.js, listed here for migration
+  var MAX_USERS = 8;
 
   // [readiness/route key, name, subtitle, 'rate'|'soon', click route (defaults to key)]
   var SUBJECT_CARDS = [
@@ -28,6 +31,132 @@
     ['ona', 'Labour market ONA', 'Career-oriented outcomes', 'soon'],
     ['grammatica', 'Grammar Grammatica', 'Clauses / tenses / word order', 'soon']
   ];
+
+  // ===================== Profiles (multi-user) =====================
+  /* Several people can share one browser: every profile keeps its own progress.
+     Storage layout:
+       dutch_b1_users_v1                  -> { version, list: [{id, name}], currentId }
+       dutch_b1_progress_v2__<id>         -> that profile's overall progress
+       dutch_b1_daily_v1__<id>            -> that profile's daily progress
+     Legacy single-user keys (without the __<id> suffix) are migrated into the
+     first profile on first load, so existing progress is never lost. */
+  var Users = {
+    data: null,
+
+    newId: function () {
+      return 'u' + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
+    },
+
+    load: function () {
+      var d = null;
+      try { d = JSON.parse(localStorage.getItem(USERS_KEY) || 'null'); } catch (e) { d = null; }
+      if (!d || d.version !== 1 || !Array.isArray(d.list) || !d.list.length) {
+        d = this.bootstrap();
+      }
+      if (!this.find(d.currentId, d.list)) d.currentId = d.list[0].id;
+      this.data = d;
+      return d;
+    },
+
+    /** First run: create one profile and adopt any legacy single-user progress */
+    bootstrap: function () {
+      var id = this.newId();
+      var d = { version: 1, list: [{ id: id, name: 'Me' }], currentId: id };
+      [LS_KEY, DAILY_KEY].forEach(function (base) {
+        try {
+          var old = localStorage.getItem(base);
+          if (old != null && localStorage.getItem(base + '__' + id) == null) {
+            localStorage.setItem(base + '__' + id, old);
+            localStorage.removeItem(base);
+          }
+        } catch (e) {}
+      });
+      try { localStorage.setItem(USERS_KEY, JSON.stringify(d)); } catch (e) {}
+      return d;
+    },
+
+    save: function () {
+      try { localStorage.setItem(USERS_KEY, JSON.stringify(this.data)); } catch (e) {}
+    },
+
+    find: function (id, list) {
+      list = list || (this.data ? this.data.list : []);
+      for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+      return null;
+    },
+
+    all: function () { return this.data.list.slice(); },
+    currentId: function () { return this.data.currentId; },
+    current: function () { return this.find(this.data.currentId) || this.data.list[0]; },
+    currentName: function () { var u = this.current(); return u ? u.name : 'Me'; },
+
+    /** Namespaced storage key for the active profile */
+    key: function (base) { return base + '__' + this.data.currentId; },
+
+    /** Returns the new id, or '' when the name is invalid / the limit is reached */
+    add: function (name) {
+      name = this.clean(name);
+      if (!name || this.data.list.length >= MAX_USERS) return '';
+      var id = this.newId();
+      this.data.list.push({ id: id, name: name });
+      this.data.currentId = id;
+      this.save();
+      return id;
+    },
+
+    rename: function (id, name) {
+      name = this.clean(name);
+      var u = this.find(id);
+      if (!u || !name) return false;
+      u.name = name;
+      this.save();
+      return true;
+    },
+
+    /** Removing a profile also drops its progress; the last profile is kept */
+    remove: function (id) {
+      if (this.data.list.length <= 1) return false;
+      var i = -1;
+      for (var k = 0; k < this.data.list.length; k++) if (this.data.list[k].id === id) i = k;
+      if (i < 0) return false;
+      this.data.list.splice(i, 1);
+      [LS_KEY, DAILY_KEY].forEach(function (base) {
+        try { localStorage.removeItem(base + '__' + id); } catch (e) {}
+      });
+      if (this.data.currentId === id) this.data.currentId = this.data.list[0].id;
+      this.save();
+      return true;
+    },
+
+    select: function (id) {
+      if (!this.find(id) || id === this.data.currentId) return false;
+      this.data.currentId = id;
+      this.save();
+      return true;
+    },
+
+    clean: function (name) {
+      return String(name == null ? '' : name).replace(/\s+/g, ' ').trim().slice(0, 20);
+    },
+
+    /** Small headline numbers for a profile, read straight from its own keys */
+    statsOf: function (id) {
+      var out = { mastered: 0, answered: 0, streak: 0 };
+      try {
+        var p = JSON.parse(localStorage.getItem(LS_KEY + '__' + id) || 'null');
+        if (p) {
+          out.mastered = (p.mastered || []).length;
+          var w = p.subjects && p.subjects.woorden;
+          out.answered = w ? (w.answered || 0) : 0;
+        }
+      } catch (e) {}
+      try {
+        var d = JSON.parse(localStorage.getItem(DAILY_KEY + '__' + id) || 'null');
+        if (d) out.streak = d.streak || 0;
+      } catch (e) {}
+      return out;
+    }
+  };
 
   // ===================== Progress store =====================
   var Store = {
@@ -44,7 +173,7 @@
 
     load: function () {
       var d = null;
-      try { d = JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { d = null; }
+      try { d = JSON.parse(localStorage.getItem(Users.key(LS_KEY)) || 'null'); } catch (e) { d = null; }
       if (!d || d.version !== 2 || !d.subjects) d = this.empty();
       if (!d.subjects.woorden) d.subjects.woorden = { answered: 0, correct: 0, recent: [] };
       if (!Array.isArray(d.mastered)) d.mastered = [];
@@ -53,7 +182,7 @@
     },
 
     save: function () {
-      try { localStorage.setItem(LS_KEY, JSON.stringify(this.data)); } catch (e) {}
+      try { localStorage.setItem(Users.key(LS_KEY), JSON.stringify(this.data)); } catch (e) {}
     },
 
     reset: function () {
@@ -164,6 +293,7 @@
     'daily-zinnen': ['Today: Sentences', 'Word-order rebuild - 8 sentences'],
     woorden: ['Vocabulary Woordenschat', 'Flashcards / choice / spelling - answers count on the dashboard'],
     stats: ['Statistics', 'Progress is stored in this browser'],
+    users: ['Profiles', 'Switch profile - each one keeps its own progress'],
     soon: ['In development', 'Coming in a later stage']
   };
 
@@ -274,11 +404,11 @@
       (r.ready ? 'Passed.' : 'You need ' + RECENT_WINDOW + ' recent questions at 80% or more to pass.') + '</p>' +
       '</div>' +
       '<button class="btn red block" id="btn-reset">Reset progress</button>' +
-      '<p class="foot-note">Progress is stored in this browser (localStorage); it is lost when you switch devices or clear the cache.' +
+      '<p class="foot-note">Profile "' + esc(Users.currentName()) + '" - progress is stored in this browser (localStorage); it is lost when you switch devices or clear the cache.' +
       (TTS.available ? '' : '<br>This browser does not support speech synthesis.') + '</p>';
 
     $('btn-reset').addEventListener('click', function () {
-      if (window.confirm('Clear mastered words, answer history and daily streak?')) {
+      if (window.confirm('Clear mastered words, answer history and daily streak of profile "' + Users.currentName() + '"?')) {
         Store.reset();
         if (window.Daily) window.Daily.reset();
         renderStats();
@@ -564,6 +694,99 @@
     renderPractice();
   }
 
+  // ===================== Profile page =====================
+  /** Re-read every store from the keys of the now-active profile */
+  function applyProfile() {
+    Store.load();
+    if (window.Daily && window.Daily.reload) window.Daily.reload();
+    updateUserBtn();
+  }
+
+  function switchTo(id) {
+    if (!Users.select(id)) return;
+    applyProfile();
+    navigate('dashboard');
+  }
+
+  function renderUsers() {
+    var view = $('view');
+    var list = Users.all();
+    var cur = Users.currentId();
+
+    var rows = list.map(function (u) {
+      var s = Users.statsOf(u.id);
+      return '<div class="user-row' + (u.id === cur ? ' current' : '') + '" data-id="' + esc(u.id) + '">' +
+        '<button class="user-pick" data-act="pick" data-id="' + esc(u.id) + '">' +
+        '<span class="user-name">' + esc(u.name) + (u.id === cur ? ' <span class="user-tag">active</span>' : '') + '</span>' +
+        '<span class="user-meta">' + s.mastered + ' mastered - ' + s.answered + ' answered - ' + s.streak + ' day streak</span>' +
+        '</button>' +
+        '<span class="user-acts">' +
+        '<button class="btn tiny" data-act="rename" data-id="' + esc(u.id) + '">Rename</button>' +
+        (list.length > 1 ? '<button class="btn tiny red" data-act="remove" data-id="' + esc(u.id) + '">Delete</button>' : '') +
+        '</span>' +
+        '</div>';
+    }).join('');
+
+    view.innerHTML =
+      '<div class="card"><div class="card-head"><span>Profiles</span>' +
+      '<span class="muted">' + list.length + '/' + MAX_USERS + '</span></div>' +
+      '<div class="user-list">' + rows + '</div>' +
+      '<p class="foot-note">Tap a profile to switch. Every profile keeps its own words, answer history and day streak in this browser.</p>' +
+      '</div>' +
+      (list.length < MAX_USERS
+        ? '<div class="card"><div class="card-head"><span>Add a profile</span></div>' +
+          '<div class="user-add"><input id="new-user" class="input" type="text" maxlength="20" placeholder="Name" autocomplete="off">' +
+          '<button class="btn primary" id="btn-add-user">Add</button></div>' +
+          '<p class="foot-note">No password - the name only separates progress on this device.</p></div>'
+        : '<p class="foot-note">Profile limit reached. Delete one to add another.</p>');
+
+    view.querySelectorAll('[data-act]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-id');
+        var act = b.getAttribute('data-act');
+        if (act === 'pick') {
+          switchTo(id);
+        } else if (act === 'rename') {
+          var u = Users.find(id);
+          var name = window.prompt('New name', u ? u.name : '');
+          if (name != null && Users.rename(id, name)) { updateUserBtn(); renderUsers(); }
+        } else if (act === 'remove') {
+          var v = Users.find(id);
+          if (window.confirm('Delete "' + (v ? v.name : '') + '" and all of its progress?')) {
+            var wasCurrent = (id === Users.currentId());
+            if (Users.remove(id)) {
+              if (wasCurrent) applyProfile();
+              renderUsers();
+            }
+          }
+        }
+      });
+    });
+
+    var addBtn = $('btn-add-user');
+    if (addBtn) {
+      var submit = function () {
+        var input = $('new-user');
+        var id = Users.add(input.value);
+        if (!id) { input.focus(); return; }
+        switchTo(id);
+      };
+      addBtn.addEventListener('click', submit);
+      $('new-user').addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter') submit();
+      });
+    }
+  }
+
+  function updateUserBtn() {
+    var b = $('btn-user');
+    if (!b) return;
+    var name = Users.currentName();
+    b.textContent = name.slice(0, 1).toUpperCase();
+    b.title = 'Profile: ' + name;
+    b.setAttribute('aria-label', 'Profile: ' + name);
+  }
+
   // ===================== Routing =====================
   var current = 'dashboard';
 
@@ -573,6 +796,7 @@
     if (route === 'dashboard') renderDashboard();
     else if (route === 'woorden') renderWoorden();
     else if (route === 'stats') renderStats();
+    else if (route === 'users') renderUsers();
     else if (route.indexOf('daily') === 0 && window.Daily) window.Daily.route(route);
     else renderSoon();
 
@@ -590,11 +814,13 @@
 
   // ===================== Bootstrap =====================
   function init() {
+    Users.load();
     Store.load();
 
     // Shared with daily.js: progress store, speech, escaping and routing
     window.AppBridge = {
       Store: Store,
+      Users: Users,
       TTS: TTS,
       esc: esc,
       shuffle: shuffle,
@@ -607,6 +833,8 @@
     $('btn-back').addEventListener('click', function () {
       navigate(current.indexOf('daily-') === 0 ? 'daily' : 'dashboard');
     });
+    $('btn-user').addEventListener('click', function () { navigate('users'); });
+    updateUserBtn();
 
     window.addEventListener('hashchange', function () {
       var r = (location.hash || '#daily').slice(1) || 'daily';

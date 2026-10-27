@@ -133,9 +133,15 @@
       };
     },
 
+    /** Storage key of the active profile (falls back to the plain key) */
+    storeKey: function () {
+      var U = window.AppBridge && window.AppBridge.Users;
+      return (U && U.data) ? U.key(LS_KEY) : LS_KEY;
+    },
+
     load: function () {
       var d = null;
-      try { d = JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { d = null; }
+      try { d = JSON.parse(localStorage.getItem(this.storeKey()) || 'null'); } catch (e) { d = null; }
       if (!d || d.version !== 1) d = this.empty();
       var base = this.empty();
       for (var k in base) {
@@ -148,7 +154,7 @@
     },
 
     save: function () {
-      try { localStorage.setItem(LS_KEY, JSON.stringify(this.data)); } catch (e) {}
+      try { localStorage.setItem(this.storeKey(), JSON.stringify(this.data)); } catch (e) {}
     },
 
     reset: function () {
@@ -849,6 +855,9 @@
   window.Daily = {
     route: route,
     summary: summary,
-    reset: function () { D.reset(); }
+    reset: function () { D.reset(); },
+    // Called after switching profile: drop the cached data so the next read
+    // picks up the newly active profile's storage key.
+    reload: function () { D.data = null; }
   };
 })();
