@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-"""数据与进度存储层。
+"""Data and progress storage layer.
 
-职责:
-- 加载词库(vocabulary.json)与各科题库(可选,缺失则返回空)
-- 主题化访问词汇(按 cat 分组)
-- 分科进度与就绪度(readiness)持久化
-- 兼容旧版 progress.json 结构自动迁移
+Responsibilities:
+- load the vocabulary (vocabulary.json) and the optional per-subject banks
+  (an empty list is returned when a bank is missing)
+- theme-based access to the vocabulary (grouped by cat)
+- persist per-subject progress and readiness
+- automatically migrate the legacy progress.json structure
 """
 
 import os
@@ -16,33 +17,33 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 VOCAB_FILE = os.path.join(DATA_DIR, "vocabulary.json")
 PROGRESS_FILE = os.path.join(DATA_DIR, "progress.json")
 
-# 备考六科目 + 贯穿模块 的内部键
+# Internal keys of the six exam subjects + the cross-cutting modules
 SUBJECTS = ["lezen", "luisteren", "schrijven", "spreken", "knm", "ona"]
-# 基于"最近N题正确率"判定就绪的科目
+# Subjects whose readiness is based on the accuracy of the last N questions
 RATE_SUBJECTS = ["lezen", "luisteren", "knm", "woorden"]
-RECENT_WINDOW = 20          # 就绪度采样窗口
-READY_THRESHOLD = 0.80      # 达标正确率阈值
+RECENT_WINDOW = 20          # readiness sampling window
+READY_THRESHOLD = 0.80      # accuracy needed to be considered ready
 
 
 def _empty_progress():
-    """全新进度结构。"""
+    """Return a brand new progress structure."""
     subjects = {}
     for s in RATE_SUBJECTS:
         subjects[s] = {"answered": 0, "correct": 0, "recent": []}
     return {
         "version": 2,
-        "mastered": [],          # 已掌握单词 nl 列表
-        "subjects": subjects,    # 分科答题统计
-        "tasks": {},             # 写作/口语/ONA 等任务完成记录
+        "mastered": [],          # list of mastered words (nl)
+        "subjects": subjects,    # per-subject answer statistics
+        "tasks": {},             # completion records for writing/speaking/ONA tasks
     }
 
 
 def _migrate(old):
-    """把旧版 {mastered, answered, correct} 迁移到 v2 结构。"""
+    """Migrate the legacy {mastered, answered, correct} shape to v2."""
     new = _empty_progress()
     if isinstance(old.get("mastered"), list):
         new["mastered"] = old["mastered"]
-    # 旧版答题统计视为词汇科成绩
+    # Legacy answer statistics are treated as vocabulary results
     ans = int(old.get("answered", 0) or 0)
     cor = int(old.get("correct", 0) or 0)
     if ans:
@@ -52,13 +53,13 @@ def _migrate(old):
 
 
 class Store:
-    """词库/题库/进度的统一入口。"""
+    """Single entry point for vocabulary, question banks and progress."""
 
     def __init__(self):
         self.words = self._load_words()
         self.progress = self._load_progress()
 
-    # ---------- 词库 ----------
+    # ---------- vocabulary ----------
     def _load_words(self):
         try:
             with open(VOCAB_FILE, "r", encoding="utf-8") as f:
@@ -68,7 +69,7 @@ class Store:
             return []
 
     def themes(self):
-        """返回去重且排序的主题(cat)列表。"""
+        """Return the de-duplicated, sorted list of themes (cat)."""
         seen = []
         for w in self.words:
             c = w.get("cat", "")
@@ -77,14 +78,14 @@ class Store:
         return sorted(seen)
 
     def words_by_theme(self, theme=None):
-        """按主题筛选单词;theme 为 None/空 返回全部。"""
+        """Filter words by theme; None/empty returns everything."""
         if not theme:
             return list(self.words)
         return [w for w in self.words if w.get("cat") == theme]
 
-    # ---------- 题库(各科,可选) ----------
+    # ---------- question banks (per subject, optional) ----------
     def load_bank(self, subject):
-        """加载 data/<subject>.json 的 items,缺失返回 []。"""
+        """Load the items of data/<subject>.json, [] when missing."""
         path = os.path.join(DATA_DIR, f"{subject}.json")
         try:
             with open(path, "r", encoding="utf-8") as f:
@@ -93,19 +94,19 @@ class Store:
         except Exception:
             return []
 
-    # ---------- 进度加载/保存 ----------
+    # ---------- load/save progress ----------
     def _load_progress(self):
         try:
             with open(PROGRESS_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except Exception:
             return _empty_progress()
-        # 版本判定与迁移
+        # Version check and migration
         if data.get("version") != 2 or "subjects" not in data:
             data = _migrate(data)
             self._save(data)
             return data
-        # 补齐可能缺失的科目键
+        # Fill in subject keys that may be missing
         base = _empty_progress()
         for k in base["subjects"]:
             data["subjects"].setdefault(k, base["subjects"][k])
@@ -119,14 +120,14 @@ class Store:
             with open(PROGRESS_FILE, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
         except Exception as e:
-            print("保存进度失败:", e)
+            print("Failed to save progress:", e)
 
     def save(self):
         self._save(self.progress)
 
-    # ---------- 答题记录与就绪度 ----------
+    # ---------- answer records and readiness ----------
     def record_answer(self, subject, correct):
-        """记录一次答题结果并即时落盘。"""
+        """Record one answer result and write it to disk immediately."""
         subs = self.progress["subjects"]
         if subject not in subs:
             subs[subject] = {"answered": 0, "correct": 0, "recent": []}
@@ -136,13 +137,13 @@ class Store:
             s["correct"] = s.get("correct", 0) + 1
         recent = s.setdefault("recent", [])
         recent.append(1 if correct else 0)
-        # 只保留窗口内最近记录
+        # Keep only the records inside the window
         if len(recent) > RECENT_WINDOW:
             del recent[:-RECENT_WINDOW]
         self.save()
 
     def readiness(self, subject):
-        """返回 (rate, ready, sampled):最近窗口正确率、是否达标、样本数。"""
+        """Return (rate, ready, sampled): recent accuracy, ready flag, sample size."""
         s = self.progress["subjects"].get(subject)
         if not s or not s.get("recent"):
             return 0.0, False, 0
@@ -159,7 +160,7 @@ class Store:
         self.progress.setdefault("tasks", {})[key] = bool(done)
         self.save()
 
-    # ---------- 已掌握单词 ----------
+    # ---------- mastered words ----------
     def is_mastered(self, nl):
         return nl in self.progress.get("mastered", [])
 
@@ -172,9 +173,9 @@ class Store:
         self.save()
         return nl in m
 
-    # ---------- 概览 ----------
+    # ---------- overview ----------
     def overview(self):
-        """备考看板用:各科就绪度汇总。"""
+        """Used by the dashboard: readiness summary per subject."""
         result = {}
         for s in RATE_SUBJECTS:
             rate, ready, sampled = self.readiness(s)

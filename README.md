@@ -1,98 +1,98 @@
-# 荷兰语 B1 备考助手 (DutchLearningBot)
+# Dutch B1 Exam Trainer (DutchLearningBot)
 
-面向荷兰入籍考试(Inburgeringsexamen, B1)的备考工具，提供**网页版**(手机可用) 与 **macOS 桌面版**两种形态，共用同一套词库。
+A study tool for the Dutch integration exam (Inburgeringsexamen, B1). It ships in two shapes - a **web app** (mobile friendly) and a **macOS desktop app** - both driven by the same vocabulary deck.
 
-在线地址：<https://fanruihwaiting8.github.io/DutchLearningBot/>
+Live version: <https://fanruihwaiting8.github.io/DutchLearningBot/>
 
-## 网页版(推荐，手机优先)
+## Web app (recommended, mobile first)
 
-纯静态页面，无后端、无需安装，手机浏览器打开即用；可「添加到主屏幕」当 App 使用，支持离线。
+A plain static page: no backend, nothing to install, just open it in a phone browser. You can "Add to HomeScreen" to use it like a native app, and it works offline.
 
-- ☀ **每日学习**（默认首页）：每天自动生成固定学习量的任务单，约 20 分钟做完，不含听力。
-  - 15 个新词（学习卡）+ 15 个复习词（荷→中四选一）
-  - 1 篇 B1 短文 + 3 道理解题（可显示中文对照、整篇朗读）
-  - 8 句词序重组（点词块拼句）
-  - 顶部进度条，三段全部做完才算当日达成，并累计**连续打卡天数**（streak）
-  - 任务按日期种子生成：同一天刷新不变，到第二天自动换一批；新词优先没学过的，复习词优先做错过的
-- 📋 **备考看板**：词汇 / 阅读 / 听力 / 写作 / 口语 / KNM / ONA / 语法 八个科目，显示各科就绪度（当前「词汇」「阅读」有内容，其余为后续阶段）。
-- 📇 **闪卡**：正面荷兰语，点击翻面看中文与例句，可标记「已掌握」，支持朗读。
-- 🔀 **双向选择**：随机 荷→中 或 中→荷，四选一自动判分。
-- ✏️ **拼写**：根据中文写出荷兰语，回车提交，答错给出正确拼写并朗读。
-- 📊 **学习统计**：已掌握数、累计答题、正确率、就绪度，可一键重置。
-- 🔊 **朗读**：使用浏览器 Web Speech API(`nl-NL`)，需系统/浏览器装有荷兰语语音。
+- **Daily Study** (default home): every day a fixed workload is generated automatically, about 20 minutes, no listening section.
+  - 15 new words (flashcards) + 15 review words (Dutch -> English multiple choice)
+  - 1 B1 passage + 3 comprehension questions (English translation can be shown, whole text can be read aloud)
+  - 8 word-order exercises (tap the tiles to build the sentence)
+  - A progress bar on top; the day counts as reached only when all three sections are done, and a **streak** of consecutive days is kept
+  - Tasks come from a date seed: reloading on the same day changes nothing, a new day brings a new batch; new words prefer unseen entries, review words prefer previously missed ones
+- **Readiness dashboard**: eight subjects - Vocabulary / Reading / Listening / Writing / Speaking / KNM / ONA / Grammar - each with its own readiness (Vocabulary and Reading have content today, the rest come in later phases).
+- **Flashcards**: Dutch on the front, tap to flip for the English meaning and an example; words can be marked as mastered and read aloud.
+- **Two-way multiple choice**: randomly Dutch -> English or English -> Dutch, four options, scored automatically.
+- **Spelling**: write the Dutch word for an English prompt, submit with Enter; a wrong answer shows the correct spelling and reads it aloud.
+- **Statistics**: mastered count, total answers, accuracy and readiness, with a one-click reset.
+- **Speech**: uses the browser Web Speech API (`nl-NL`), so a Dutch voice must be installed in the system or browser.
 
-就绪度规则：取最近 20 题，正确率 ≥ 80% 记为达标（与桌面版一致）。
+Readiness rule: take the last 20 answers; 80% or more correct counts as ready (same as the desktop app).
 
-学习进度存在**浏览器本地** `localStorage`（答题进度 `dutch_b1_progress_v2`、每日打卡 `dutch_b1_daily_v1`），换设备或清缓存会丢失，与桌面版进度互不同步。
+Progress is stored **locally in the browser** via `localStorage` (answer progress in `dutch_b1_progress_v2`, daily streak in `dutch_b1_daily_v1`). It is lost when you switch devices or clear the cache, and it does not sync with the desktop app.
 
-本地预览：
+Local preview:
 
 ```bash
 cd web && python3 -m http.server 8777
-# 浏览器打开 http://127.0.0.1:8777/
-# 手机在同一局域网内可访问 http://<电脑IP>:8777/
+# open http://127.0.0.1:8777/ in a browser
+# from a phone on the same network: http://<computer-ip>:8777/
 ```
 
-> `web/data.js` 直接内联词库，所以直接双击 `web/index.html`（`file://`）也能用。
+> `web/data.js` inlines the whole deck, so opening `web/index.html` directly (`file://`) works too.
 
-## macOS 桌面版
+## macOS desktop app
 
-需要 Python 3（自带 tkinter，macOS / Windows 官方 Python 均已内置）：
+Requires Python 3 with tkinter (bundled with the official macOS and Windows builds):
 
 ```bash
 python3 main.py
 ```
 
-桌面版进度保存在 `data/progress.json`（不入库）。
+Desktop progress is kept in `data/progress.json` (not tracked by git).
 
-## 目录结构
+## Project layout
 
 ```
 DutchLearningBot/
-├── main.py                 # 桌面版入口(tkinter)
+├── main.py                 # desktop entry point (tkinter)
 ├── core/
-│   ├── store.py            # 进度存取、就绪度计算
-│   └── tts.py              # 朗读(macOS say)
-├── ui/                     # 桌面版界面:theme / dashboard / woorden / placeholder
+│   ├── store.py            # progress persistence, readiness calculation
+│   └── tts.py              # speech (macOS say)
+├── ui/                     # desktop views: theme / dashboard / woorden / placeholder
 ├── data/
-│   ├── vocabulary.json     # 词库(唯一数据源,可自行增删)
-│   ├── lezen.json          # 阅读短文 + 理解题
-│   ├── zinnen.json         # 词序重组用的句子
-│   └── progress.json       # 桌面版学习进度(自动生成,已 gitignore)
+│   ├── vocabulary.json     # vocabulary deck (single source of truth, edit freely)
+│   ├── lezen.json          # reading passages + comprehension questions
+│   ├── zinnen.json         # sentences used by the word-order drill
+│   └── progress.json       # desktop progress (generated, gitignored)
 ├── tools/
-│   └── build_web_data.py   # 由上面三个 json 生成 web/data.js
-├── web/                    # 网页版(GitHub Pages 发布目录)
+│   └── build_web_data.py   # builds web/data.js from the three json files above
+├── web/                    # web app (the directory published to GitHub Pages)
 │   ├── index.html / styles.css / app.js
-│   ├── daily.js            # 每日学习模块
-│   ├── data.js             # 生成产物,勿手改
+│   ├── daily.js            # Daily Study module
+│   ├── data.js             # generated artefact, do not edit by hand
 │   └── manifest.webmanifest / icon.svg / sw.js   # PWA
-├── .github/workflows/pages.yml  # push 到 main 自动部署 web/ 到 Pages
-└── DESIGN_B1.md            # B1 备考功能设计与 Roadmap
+├── .github/workflows/pages.yml  # pushing to main deploys web/ to Pages
+└── DESIGN_B1.md            # B1 feature design and roadmap
 ```
 
-## 自定义词库
+## Customising the deck
 
-编辑 `data/vocabulary.json` 的 `words` 数组，每条格式：
+Edit the `words` array in `data/vocabulary.json`; each entry looks like:
 
 ```json
 {
   "nl": "hallo",
-  "zh": "你好",
-  "cat": "问候与礼貌",
+  "en": "hello",
+  "cat": "Greetings and politeness",
   "ex_nl": "Hallo, hoe gaat het?",
-  "ex_zh": "你好,你最近怎么样?"
+  "ex_en": "Hello, how are you?"
 }
 ```
 
-阅读素材在 `data/lezen.json`（`passages[]`，每篇含荷文、中文对照和 3 道题），重组句子在 `data/zinnen.json`（`sentences[]`，`nl` 不带句末标点）。
+Reading material lives in `data/lezen.json` (`passages[]`, each with the Dutch text, an English translation and 3 questions); word-order sentences live in `data/zinnen.json` (`sentences[]`, where `nl` carries no final punctuation).
 
-改完**必须**重新生成网页版数据，否则网页看不到新内容：
+After editing you **must** regenerate the web data, otherwise the web app will not show the new content:
 
 ```bash
 python3 tools/build_web_data.py
 ```
 
-桌面版重启即生效；网页版提交 `web/data.js` 后由 Actions 自动重新部署。
+The desktop app picks up changes on restart; the web app redeploys automatically through Actions once `web/data.js` is committed.
 
 ## License
 

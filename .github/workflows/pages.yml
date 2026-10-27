@@ -1,7 +1,8 @@
 name: Deploy web to GitHub Pages
 
-# 把 web/ 目录（纯静态：index.html + styles.css + data.js + app.js + PWA 文件）
-# 发布到 GitHub Pages。推送到 main 时自动部署，也可在 Actions 页手动触发。
+# Publishes the web/ folder (pure static: index.html + styles.css + data.js
+# + app.js + PWA files) to GitHub Pages. Deploys automatically on push to
+# main and can also be triggered manually from the Actions tab.
 on:
   push:
     branches: [main]
@@ -15,7 +16,7 @@ permissions:
   pages: write
   id-token: write
 
-# 同一时间只保留一个部署，新的推送取消排队中的旧任务
+# Keep only one deployment at a time; a new push cancels the queued one.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -29,9 +30,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 注意：不用 enablement: true。该参数会调用 API 自动开启 Pages，
-      # 在本仓库会因 token 权限不足而失败；Pages 已在仓库 Settings → Pages
-      # 里手动把 Source 设为 "GitHub Actions"，这里只需读取配置。
+      # Note: do NOT use "enablement: true". That option calls the API to turn
+      # Pages on and fails in this repo because the token lacks permission.
+      # Pages Source is already set to "GitHub Actions" manually in repo
+      # Settings -> Pages, so we only need to read the configuration here.
       - uses: actions/configure-pages@v5
 
       - name: Upload web/ as Pages artifact

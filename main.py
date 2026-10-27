@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-"""荷兰语 B1 备考助手 —— 应用入口与路由。
+"""Dutch B1 Exam Trainer - application entry point and routing.
 
-架构:
-- core/  数据与进度存储(store)、语音(tts)
-- ui/    备考看板(dashboard)、词汇(woorden)、各科占位页(placeholder)
+Architecture:
+- core/  data and progress storage (store), speech (tts)
+- ui/    exam dashboard, vocabulary (woorden), per-subject placeholders
 
-main.py 仅负责:创建主窗口、持有全局 store/tts、按 route 切换页面。
+main.py only creates the main window, owns the global store/tts and
+switches pages by route.
 """
 
 import sys
@@ -23,7 +24,7 @@ from core.tts import get_tts
 from ui import theme as T
 from ui import dashboard, woorden, placeholder
 
-# 占位页路由(P2+ 才落地内容)
+# Placeholder routes (real content lands in P2+)
 PLACEHOLDER_ROUTES = {
     "lezen", "luisteren", "schrijven", "spreken", "knm", "ona", "grammatica",
 }
@@ -32,7 +33,7 @@ PLACEHOLDER_ROUTES = {
 class DutchApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("荷兰语 B1 备考助手")
+        self.title("Dutch B1 Exam Trainer")
         self.geometry("880x640")
         self.minsize(760, 560)
         self.configure(bg=T.BG)
@@ -40,14 +41,14 @@ class DutchApp(tk.Tk):
         self.store = Store()
         self.tts = get_tts()
 
-        # 页面容器
+        # Page container
         self.container = tk.Frame(self, bg=T.BG)
         self.container.pack(fill="both", expand=True)
 
         self.navigate("dashboard")
 
     def navigate(self, route):
-        """清空容器并渲染目标页面。"""
+        """Clear the container and render the target page."""
         for w in self.container.winfo_children():
             w.destroy()
         try:
@@ -61,7 +62,7 @@ class DutchApp(tk.Tk):
                 dashboard.build(self.container, self)
         except Exception:
             traceback.print_exc()
-            messagebox.showerror("出错了", traceback.format_exc())
+            messagebox.showerror("Something went wrong", traceback.format_exc())
 
 
 def main():
@@ -71,7 +72,7 @@ def main():
     except Exception:
         traceback.print_exc()
         try:
-            messagebox.showerror("启动失败", traceback.format_exc())
+            messagebox.showerror("Failed to start", traceback.format_exc())
         except Exception:
             pass
 

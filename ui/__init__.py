@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-"""界面层:备考看板与各科目页面。"""
+"""UI layer: the exam dashboard and the per-subject pages."""

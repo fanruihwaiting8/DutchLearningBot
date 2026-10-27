@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
-"""统一视觉:配色、字体、通用控件工厂。
+"""Shared look and feel: colours, fonts and common widget factories.
 
-各 UI 模块从这里取常量与工厂函数,保证风格一致。
+Every UI module takes its constants and factory functions from here so the
+whole app keeps one consistent style.
 """
 
 import tkinter as tk
 
-# ---------- 配色 ----------
-BG = "#f4f6fb"          # 页面背景
-CARD = "#ffffff"        # 卡片背景
-PRIMARY = "#3b6cf6"     # 主色(荷兰蓝)
-PRIMARY_DK = "#2a54cc"  # 主色按下态
-OK = "#2fa36b"          # 达标/正确
-WARN = "#e0932f"        # 进行中
-BAD = "#d1495b"         # 未达标/错误
-TEXT = "#1f2733"        # 主文字
-MUTED = "#7a8699"       # 次要文字
-ORANGE = "#ff6a1a"      # 荷兰橙点缀
+# ---------- colours ----------
+BG = "#f4f6fb"          # page background
+CARD = "#ffffff"        # card background
+PRIMARY = "#3b6cf6"     # primary colour (Dutch blue)
+PRIMARY_DK = "#2a54cc"  # primary pressed state
+OK = "#2fa36b"          # ready / correct
+WARN = "#e0932f"        # in progress
+BAD = "#d1495b"         # not ready / wrong
+TEXT = "#1f2733"        # main text
+MUTED = "#7a8699"       # secondary text
+ORANGE = "#ff6a1a"      # Dutch orange accent
 
-# ---------- 字体 ----------
-FONT = "PingFang SC"    # macOS 中文字体
+# ---------- fonts ----------
+FONT = "Helvetica Neue"
 F_TITLE = (FONT, 22, "bold")
 F_H2 = (FONT, 16, "bold")
 F_BODY = (FONT, 13)
@@ -28,11 +29,12 @@ F_BIG = (FONT, 30, "bold")
 
 
 class HoverButton(tk.Label):
-    """用 Label 模拟的按钮。
+    """A button simulated with a Label.
 
-    macOS 原生 tk.Button 在 Aqua 主题下忽略 bg,一律显示为系统灰按钮,
-    看起来像禁用。这里用 Label + 事件绑定实现真正的实底色按钮:
-    常态即可见、悬停变暗、点击触发 command。
+    On macOS the native tk.Button ignores bg under the Aqua theme and always
+    renders as a grey system button, which looks disabled. Using a Label plus
+    event bindings gives a real solid-colour button: visible by default,
+    darker on hover, running command on click.
     """
 
     def __init__(self, parent, command=None, **kw):
@@ -57,7 +59,8 @@ class HoverButton(tk.Label):
             self._command()
 
     def configure(self, **kw):
-        # 外部改 bg 时同步基准色,保证悬停恢复正确
+        # Keep the base colour in sync when bg is changed from outside,
+        # so leaving the hover state restores the right colour.
         if "bg" in kw:
             self._base_bg = kw["bg"]
         if "background" in kw:
@@ -69,7 +72,7 @@ class HoverButton(tk.Label):
 
 def make_button(parent, text, command, bg=PRIMARY, fg="#ffffff",
                 font=F_BODY, width=None, height=None):
-    """实底色按钮(遵循项目按钮规范:常态即可见,不靠悬停才显色)。"""
+    """Solid-colour button (per project rule: visible by default, never hover-only)."""
     btn = HoverButton(
         parent, command=command, text=text,
         bg=bg, fg=fg, font=font,
@@ -83,7 +86,7 @@ def make_button(parent, text, command, bg=PRIMARY, fg="#ffffff",
 
 
 def make_card(parent, **kw):
-    """统一圆角感卡片容器(用 Frame + 内边距模拟)。"""
+    """Shared card container (a Frame with padding, faking rounded corners)."""
     f = tk.Frame(parent, bg=CARD, bd=0, highlightthickness=1,
                  highlightbackground="#e3e8f0")
     return f
@@ -95,7 +98,7 @@ def make_label(parent, text, font=F_BODY, fg=TEXT, bg=None, **kw):
 
 
 def _darken(hex_color, factor=0.85):
-    """把颜色调暗,用作按下态。"""
+    """Darken a colour, used for the pressed state."""
     try:
         c = hex_color.lstrip("#")
         r, g, b = int(c[0:2], 16), int(c[2:4], 16), int(c[4:6], 16)
@@ -106,7 +109,7 @@ def _darken(hex_color, factor=0.85):
 
 
 def rate_color(ready, sampled):
-    """根据就绪状态返回状态色:达标绿 / 有样本橙 / 无样本灰。"""
+    """Status colour: green when ready, orange with samples, grey without."""
     if ready:
         return OK
     if sampled > 0:

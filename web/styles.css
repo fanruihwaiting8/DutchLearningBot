@@ -1,5 +1,5 @@
-/* 荷兰语 B1 备考助手 · 手机优先样式
-   配色沿用桌面版 ui/theme.py:荷兰蓝 #3b6cf6 + 荷兰橙 #ff6a1a */
+/* Dutch B1 Exam Trainer - mobile-first styles
+   Palette follows the desktop ui/theme.py: Dutch blue #3b6cf6 + Dutch orange #ff6a1a */
 
 :root {
   --bg: #f4f6fb;
@@ -24,13 +24,13 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
-               "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+               "Segoe UI", Roboto, Arial, sans-serif;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
 }
 
-/* ---------- 顶栏 ---------- */
+/* ---------- Top bar ---------- */
 .topbar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -71,7 +71,7 @@ html, body {
   cursor: pointer;
 }
 
-/* ---------- 内容区 ---------- */
+/* ---------- Content area ---------- */
 .view {
   padding: calc(env(safe-area-inset-top) + var(--topbar-h) + 12px) 14px
            calc(env(safe-area-inset-bottom) + var(--tabbar-h) + 20px);
@@ -79,7 +79,7 @@ html, body {
   margin: 0 auto;
 }
 
-/* ---------- 底部导航 ---------- */
+/* ---------- Bottom navigation ---------- */
 .tabbar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
@@ -105,7 +105,7 @@ html, body {
 .tab-ico { font-size: 18px; line-height: 1; }
 .tab.active { color: var(--primary); font-weight: 700; }
 
-/* ---------- 卡片 ---------- */
+/* ---------- Cards ---------- */
 .card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -133,7 +133,7 @@ html, body {
 .tip-label { color: var(--primary); font-size: 12px; font-weight: 700; }
 .tip-text { margin: 4px 0 0; font-size: 14px; line-height: 1.6; }
 
-/* ---------- 看板卡片 ---------- */
+/* ---------- Dashboard cards ---------- */
 .subj {
   display: flex;
   align-items: center;
@@ -152,7 +152,7 @@ html, body {
 .subj-status { font-size: 12px; margin-top: 5px; }
 .subj-arrow { color: var(--muted); font-size: 20px; }
 
-/* ---------- 词汇练习 ---------- */
+/* ---------- Vocabulary practice ---------- */
 .toolbar {
   display: flex;
   flex-direction: column;
@@ -194,21 +194,21 @@ html, body {
   letter-spacing: .3px;
   word-break: break-word;
 }
-.word-zh {
+.word-en {
   font-size: 20px;
   font-weight: 700;
   color: var(--primary);
   margin-top: 14px;
 }
 .ex-nl { font-size: 15px; margin-top: 10px; line-height: 1.5; }
-.ex-zh { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+.ex-en { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
 .hint { font-size: 12px; color: var(--muted); margin: 14px 0 0; }
 .ok-tag { color: var(--ok); font-weight: 700; }
 .muted { color: var(--muted); }
 
 .prompt-ask { font-size: 13px; color: var(--muted); text-align: center; }
 
-/* ---------- 按钮(实底色,常态即可见) ---------- */
+/* ---------- Buttons (solid fill, always visible) ---------- */
 .btn {
   flex: 1;
   border: 0;
@@ -239,7 +239,7 @@ html, body {
 }
 .speak-btn.ghost { background: #8ea4f8; }
 
-/* ---------- 选项 ---------- */
+/* ---------- Options ---------- */
 .opt {
   display: block;
   width: 100%;
@@ -256,7 +256,7 @@ html, body {
 .opt.right { background: var(--ok); color: #fff; border-color: var(--ok); }
 .opt.wrong { background: var(--bad); color: #fff; border-color: var(--bad); }
 
-/* ---------- 拼写 ---------- */
+/* ---------- Spelling ---------- */
 .spell-input {
   width: 100%;
   text-align: center;
@@ -273,7 +273,7 @@ html, body {
 .result.right { color: var(--ok); }
 .result.wrong { color: var(--bad); }
 
-/* ---------- 统计 ---------- */
+/* ---------- Statistics ---------- */
 .stat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -295,7 +295,7 @@ html, body {
 
 .foot-note { font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 14px; }
 
-/* ---------- 每日学习 ---------- */
+/* ---------- Daily study ---------- */
 .card.clickable { cursor: pointer; user-select: none; }
 .card.clickable:active { background: #eef2fd; }
 
@@ -303,7 +303,7 @@ html, body {
 
 .lezen-body { text-align: left; padding: 10px 0 2px; }
 .lezen-text { font-size: 15px; line-height: 1.8; margin: 0; white-space: pre-wrap; }
-.lezen-text.zh {
+.lezen-text.en {
   font-size: 13px;
   color: var(--muted);
   margin-top: 10px;
@@ -344,7 +344,7 @@ html, body {
   color: #fff;
 }
 
-/* ---------- 大屏(平板/桌面)把看板排成两列 ---------- */
+/* ---------- Wide screens (tablet/desktop): two-column dashboard ---------- */
 @media (min-width: 560px) {
   .subj-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .subj { margin-bottom: 0; }

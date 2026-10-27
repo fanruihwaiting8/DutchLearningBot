@@ -1,7 +1,9 @@
-/* 荷兰语 B1 备考助手 - Service Worker
-   策略:预缓存核心静态资源,运行时「缓存优先 + 后台更新」,离线可用。
-   改动静态资源后请把 CACHE 版本号 +1,否则用户可能拿到旧缓存。 */
-const CACHE = 'dutch-b1-v2';
+/* Dutch B1 Exam Trainer - Service Worker
+   Strategy: pre-cache the core static assets, then serve them cache-first with a
+   background refresh so the app also works offline.
+   Bump the CACHE version whenever a static asset changes, otherwise users may
+   keep being served the stale cache. */
+const CACHE = 'dutch-b1-v3';
 const ASSETS = [
   './',
   './index.html',

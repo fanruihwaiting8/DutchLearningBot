@@ -1,35 +1,35 @@
-/* 荷兰语 B1 备考助手 · Web 版
+/* Dutch B1 Exam Trainer - Web edition
  *
- * 与桌面版(main.py / core/store.py / ui/woorden.py)功能对齐:
- *   看板就绪度、词汇三种练习(闪卡 / 双向选择 / 拼写)、进度统计。
- * 差异:
- *   - 进度存 localStorage(浏览器本地),不写 data/progress.json;
- *   - 朗读用浏览器 Web Speech API(nl-NL),替代 macOS `say`。
+ * Feature parity with the desktop app (main.py / core/store.py / ui/woorden.py):
+ *   dashboard readiness, three vocabulary drills (flashcards / choice / spelling), stats.
+ * Differences:
+ *   - progress is stored in localStorage (browser local), not data/progress.json;
+ *   - speech uses the browser Web Speech API (nl-NL) instead of the macOS `say` command.
  */
 
 (function () {
   'use strict';
 
-  // ===================== 常量 =====================
+  // ===================== Constants =====================
   var WORDS = window.VOCAB || [];
-  var ALL_THEMES = '全部主题';
-  var RECENT_WINDOW = 20;    // 就绪度采样窗口(与 core/store.py 一致)
-  var READY_THRESHOLD = 0.8; // 达标正确率
+  var ALL_THEMES = 'All themes';
+  var RECENT_WINDOW = 20;    // readiness sampling window (same as core/store.py)
+  var READY_THRESHOLD = 0.8; // accuracy needed to pass
   var LS_KEY = 'dutch_b1_progress_v2';
 
-  // [就绪度/路由 key, 名称, 副标题, 'rate'|'soon', 点击跳转路由(默认同 key)]
+  // [readiness/route key, name, subtitle, 'rate'|'soon', click route (defaults to key)]
   var SUBJECT_CARDS = [
-    ['woorden', '词汇 Woordenschat', '主题化记忆 · 2000+ 目标', 'rate'],
-    ['lezen', '阅读 Lezen', 'B1 短文理解 · 每日 1 篇', 'rate', 'daily-lezen'],
-    ['luisteren', '听力 Luisteren', 'B1 语音听辨', 'soon'],
-    ['schrijven', '写作 Schrijven', '邮件 / 表单书写', 'soon'],
-    ['spreken', '口语 Spreken', '情景对话应答', 'soon'],
-    ['knm', '社会知识 KNM', '荷兰社会与文化', 'soon'],
-    ['ona', '劳动市场 ONA', '职业导向成果', 'soon'],
-    ['grammatica', '语法 Grammatica', '从句 / 时态 / 语序', 'soon']
+    ['woorden', 'Vocabulary Woordenschat', 'Theme-based memorisation - 2000+ target', 'rate'],
+    ['lezen', 'Reading Lezen', 'B1 passage comprehension - 1 per day', 'rate', 'daily-lezen'],
+    ['luisteren', 'Listening Luisteren', 'B1 audio discrimination', 'soon'],
+    ['schrijven', 'Writing Schrijven', 'Emails / forms', 'soon'],
+    ['spreken', 'Speaking Spreken', 'Situational dialogue responses', 'soon'],
+    ['knm', 'Society KNM', 'Dutch society and culture', 'soon'],
+    ['ona', 'Labour market ONA', 'Career-oriented outcomes', 'soon'],
+    ['grammatica', 'Grammar Grammatica', 'Clauses / tenses / word order', 'soon']
   ];
 
-  // ===================== 进度存储 =====================
+  // ===================== Progress store =====================
   var Store = {
     data: null,
 
@@ -71,7 +71,7 @@
       this.save();
     },
 
-    /** 返回 {rate, ready, sampled}:最近窗口正确率 / 是否达标 / 样本数 */
+    /** Returns {rate, ready, sampled}: recent-window accuracy / passed or not / sample size */
     readiness: function (subject) {
       var s = this.data.subjects[subject];
       if (!s || !s.recent.length) return { rate: 0, ready: false, sampled: 0 };
@@ -92,7 +92,7 @@
     }
   };
 
-  // ===================== 朗读(Web Speech API) =====================
+  // ===================== Speech (Web Speech API) =====================
   var TTS = {
     available: typeof window.speechSynthesis !== 'undefined',
     voice: null,
@@ -118,7 +118,7 @@
     }
   };
 
-  // ===================== 工具 =====================
+  // ===================== Helpers =====================
   function $(id) { return document.getElementById(id); }
 
   function shuffle(arr) {
@@ -148,23 +148,23 @@
     return 'var(--muted)';
   }
 
-  /** 转义为 HTML 文本:借 textContent→innerHTML,避免手写实体被工具链误处理 */
+  /** Escape as HTML text: go through textContent -> innerHTML to avoid hand-written entities */
   function esc(s) {
     var d = document.createElement('div');
     d.textContent = (s == null ? '' : String(s));
     return d.innerHTML;
   }
 
-  // ===================== 页面标题 =====================
+  // ===================== Page titles =====================
   var TITLES = {
-    dashboard: ['荷兰语 B1 备考看板', 'Inburgeringsexamen · 读 / 听 / 写 / 说 + KNM + ONA'],
-    daily: ['今日学习', '每天固定学习量 · 单词 + 阅读 + 句子'],
-    'daily-words': ['今日单词', '15 个新词 + 15 个复习词'],
-    'daily-lezen': ['今日阅读', '1 篇短文 + 3 道理解题'],
-    'daily-zinnen': ['今日句子', '词序重组 · 8 句'],
-    woorden: ['词汇 Woordenschat', '闪卡 / 双向选择 / 拼写 · 作答计入看板'],
-    stats: ['学习统计', '进度保存在本机浏览器'],
-    soon: ['内容开发中', '后续阶段开放']
+    dashboard: ['Dutch B1 Exam Dashboard', 'Inburgeringsexamen - read / listen / write / speak + KNM + ONA'],
+    daily: ['Today', 'A fixed daily workload - words + reading + sentences'],
+    'daily-words': ['Today: Words', '15 new words + 15 review words'],
+    'daily-lezen': ['Today: Reading', '1 passage + 3 comprehension questions'],
+    'daily-zinnen': ['Today: Sentences', 'Word-order rebuild - 8 sentences'],
+    woorden: ['Vocabulary Woordenschat', 'Flashcards / choice / spelling - answers count on the dashboard'],
+    stats: ['Statistics', 'Progress is stored in this browser'],
+    soon: ['In development', 'Coming in a later stage']
   };
 
   function setHeader(route) {
@@ -174,7 +174,7 @@
     $('btn-back').hidden = (route === 'dashboard' || route === 'daily');
   }
 
-  // ===================== 看板 =====================
+  // ===================== Dashboard =====================
   function renderDashboard() {
     var view = $('view');
     var ov = Store.readiness('woorden');
@@ -182,27 +182,27 @@
 
     var tip;
     if (ov.sampled === 0) {
-      tip = '建议每天先做完「今日学习」:15 个新词 + 15 个复习词 + 1 篇阅读 + 8 句词序重组,约 20 分钟。有余力再去「词汇」自由刷题。';
+      tip = 'Start each day by finishing "Today": 15 new words + 15 review words + 1 reading passage + 8 word-order sentences, about 20 minutes. Then drill freely in "Words" if you still have energy.';
     } else if (!ov.ready) {
-      tip = '继续巩固「词汇」,把最近 ' + RECENT_WINDOW + ' 题正确率提到 80% 以上即算达标;之后阅读、听力、KNM 模块会陆续开放。';
+      tip = 'Keep working on "Words": once your accuracy over the last ' + RECENT_WINDOW + ' questions is above 80% the subject counts as passed. Reading, listening and KNM modules will open up afterwards.';
     } else {
-      tip = '词汇已达标,基础扎实。后续阶段将开放阅读、听力、写作、口语、KNM 与 ONA 模块,可按看板逐科攻克。';
+      tip = 'Vocabulary passed - a solid base. Later stages will add reading, listening, writing, speaking, KNM and ONA so you can clear the dashboard subject by subject.';
     }
 
-    // 今日学习进度卡:看板第一屏就能看到今天还差多少
+    // Today's progress card: see at a glance how much is left for today
     var html = '';
     if (window.Daily) {
       var dy = window.Daily.summary();
       html += '<div class="card clickable" data-go="daily">' +
-        '<div class="card-head"><span>今日学习' + (dy.allDone ? ' · 已达成' : '') + '</span>' +
+        '<div class="card-head"><span>Today' + (dy.allDone ? ' - done' : '') + '</span>' +
         '<span class="muted">' + dy.pct + '%</span></div>' +
         '<div class="bar"><i style="width:' + dy.pct + '%"></i></div>' +
         '<p class="foot-note" style="margin-top:10px">' +
-        (dy.allDone ? '今天的单词 / 阅读 / 句子都做完了' : '今日任务 ' + dy.sections + ' / 3 段完成 · 共 ' + dy.got + ' / ' + dy.total + ' 项') +
-        (dy.streak > 0 ? ' · 连续打卡 ' + dy.streak + ' 天 🔥' : '') + '</p></div>';
+        (dy.allDone ? 'Words, reading and sentences are all finished for today' : 'Today ' + dy.sections + ' / 3 sections done - ' + dy.got + ' / ' + dy.total + ' items') +
+        (dy.streak > 0 ? ' - ' + dy.streak + '-day streak' : '') + '</p></div>';
     }
 
-    html += '<div class="tip"><div class="tip-label">建议</div>' +
+    html += '<div class="tip"><div class="tip-label">Tip</div>' +
             '<p class="tip-text">' + esc(tip) + '</p></div><div class="subj-list">';
 
     SUBJECT_CARDS.forEach(function (c) {
@@ -212,22 +212,22 @@
         var r = Store.readiness(route);
         color = statusColor(r.ready, r.sampled);
         status = r.sampled === 0
-          ? '未开始 · 去练习建立基线'
-          : '最近 ' + r.sampled + ' 题正确率 ' + Math.round(r.rate * 100) + '% · ' + (r.ready ? '已达标' : '练习中');
+          ? 'Not started - practise to set a baseline'
+          : 'Accuracy ' + Math.round(r.rate * 100) + '% over the last ' + r.sampled + ' questions - ' + (r.ready ? 'passed' : 'in progress');
       } else {
         color = 'var(--muted)';
-        status = '内容开发中(后续阶段开放)';
+        status = 'In development (coming in a later stage)';
       }
       html += '<div class="subj ' + (kind === 'rate' ? 'clickable' : 'soon') + '" data-go="' +
               (kind === 'rate' ? (c[4] || route) : 'soon') + '">' +
               '<div class="subj-main"><div class="subj-name">' + esc(name) + '</div>' +
               '<div class="subj-sub">' + esc(sub) + '</div>' +
               '<div class="subj-status" style="color:' + color + '">' + esc(status) + '</div></div>' +
-              '<div class="subj-arrow">›</div></div>';
+              '<div class="subj-arrow">&rsaquo;</div></div>';
     });
 
-    html += '</div><p class="foot-note">已掌握单词 ' + masteredCount + ' / ' + WORDS.length +
-            ' · 词库来自 data/vocabulary.json</p>';
+    html += '</div><p class="foot-note">Mastered words ' + masteredCount + ' / ' + WORDS.length +
+            ' - word list from data/vocabulary.json</p>';
 
     view.innerHTML = html;
     view.querySelectorAll('[data-go]').forEach(function (el) {
@@ -235,19 +235,19 @@
     });
   }
 
-  // ===================== 占位页 =====================
+  // ===================== Placeholder page =====================
   function renderSoon() {
     $('view').innerHTML =
       '<div class="card"><div class="card-body">' +
-      '<div class="word-zh" style="margin-top:0">该科目内容开发中</div>' +
-      '<p class="hint">按 DESIGN_B1.md 的 Roadmap,阅读 / 听力 / 写作 / 口语 / KNM / ONA 将分阶段上线。<br>' +
-      '当前可先把「词汇」练到达标。</p>' +
+      '<div class="word-en" style="margin-top:0">This subject is still in development</div>' +
+      '<p class="hint">Following the roadmap in DESIGN_B1.md, reading / listening / writing / speaking / KNM / ONA will ship in stages.<br>' +
+      'For now, practise "Words" until you pass.</p>' +
       '</div></div>' +
-      '<button class="btn block" id="soon-back">去练词汇</button>';
+      '<button class="btn block" id="soon-back">Practise words</button>';
     $('soon-back').addEventListener('click', function () { navigate('woorden'); });
   }
 
-  // ===================== 统计 =====================
+  // ===================== Statistics =====================
   function renderStats() {
     var s = Store.data.subjects.woorden;
     var answered = s.answered || 0;
@@ -260,24 +260,25 @@
 
     $('view').innerHTML =
       '<div class="stat-grid">' +
-      '<div class="stat"><div class="stat-num">' + mastered + '</div><div class="stat-label">已掌握单词</div></div>' +
-      '<div class="stat"><div class="stat-num">' + WORDS.length + '</div><div class="stat-label">词库总量</div></div>' +
-      '<div class="stat"><div class="stat-num">' + answered + '</div><div class="stat-label">累计答题</div></div>' +
-      '<div class="stat"><div class="stat-num">' + rate + '%</div><div class="stat-label">总体正确率</div></div>' +
-      (dy ? '<div class="stat"><div class="stat-num">' + dy.streak + '</div><div class="stat-label">连续打卡天数</div></div>' +
-            '<div class="stat"><div class="stat-num">' + dy.pct + '%</div><div class="stat-label">今日完成度</div></div>' : '') +
+      '<div class="stat"><div class="stat-num">' + mastered + '</div><div class="stat-label">Mastered words</div></div>' +
+      '<div class="stat"><div class="stat-num">' + WORDS.length + '</div><div class="stat-label">Words in list</div></div>' +
+      '<div class="stat"><div class="stat-num">' + answered + '</div><div class="stat-label">Questions answered</div></div>' +
+      '<div class="stat"><div class="stat-num">' + rate + '%</div><div class="stat-label">Overall accuracy</div></div>' +
+      (dy ? '<div class="stat"><div class="stat-num">' + dy.streak + '</div><div class="stat-label">Day streak</div></div>' +
+            '<div class="stat"><div class="stat-num">' + dy.pct + '%</div><div class="stat-label">Today completed</div></div>' : '') +
       '</div>' +
-      '<div class="card"><div class="card-head"><span>掌握进度</span><span class="muted">' + pct + '%</span></div>' +
+      '<div class="card"><div class="card-head"><span>Mastery progress</span><span class="muted">' + pct + '%</span></div>' +
       '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
-      '<p class="foot-note" style="margin-top:10px">就绪度:最近 ' + r.sampled + ' 题正确率 ' +
-      Math.round(r.rate * 100) + '%,' + (r.ready ? '已达标' : '需最近 ' + RECENT_WINDOW + ' 题且 ≥80% 才达标') + '。</p>' +
+      '<p class="foot-note" style="margin-top:10px">Readiness: accuracy ' +
+      Math.round(r.rate * 100) + '% over the last ' + r.sampled + ' questions. ' +
+      (r.ready ? 'Passed.' : 'You need ' + RECENT_WINDOW + ' recent questions at 80% or more to pass.') + '</p>' +
       '</div>' +
-      '<button class="btn red block" id="btn-reset">重置学习进度</button>' +
-      '<p class="foot-note">进度保存在本机浏览器(localStorage),换设备或清缓存会丢失。' +
-      (TTS.available ? '' : '<br>当前浏览器不支持语音朗读。') + '</p>';
+      '<button class="btn red block" id="btn-reset">Reset progress</button>' +
+      '<p class="foot-note">Progress is stored in this browser (localStorage); it is lost when you switch devices or clear the cache.' +
+      (TTS.available ? '' : '<br>This browser does not support speech synthesis.') + '</p>';
 
     $('btn-reset').addEventListener('click', function () {
-      if (window.confirm('确定清空已掌握单词、答题记录与每日打卡记录?')) {
+      if (window.confirm('Clear mastered words, answer history and daily streak?')) {
         Store.reset();
         if (window.Daily) window.Daily.reset();
         renderStats();
@@ -285,7 +286,7 @@
     });
   }
 
-  // ===================== 词汇练习 =====================
+  // ===================== Vocabulary practice =====================
   var W = {
     theme: ALL_THEMES,
     mode: 'flash',     // flash / choice / spell
@@ -293,7 +294,7 @@
     idx: 0,
     flipped: false,
     answered: false,
-    dir: true,         // true = nl→zh
+    dir: true,         // true = nl -> en
     opts: [],
     correct: '',
     picked: null
@@ -304,13 +305,13 @@
     view.innerHTML = '';
     view.appendChild($('tpl-woorden').content.cloneNode(true));
 
-    // 主题下拉
+    // Theme dropdown
     var sel = $('theme-select');
     var list = [ALL_THEMES].concat(themes());
     list.forEach(function (t) {
       var o = document.createElement('option');
       o.value = t;
-      o.textContent = (t === ALL_THEMES ? t : t) +
+      o.textContent = t +
         (t === ALL_THEMES ? ' (' + WORDS.length + ')' : ' (' + wordsByTheme(t).length + ')');
       sel.appendChild(o);
     });
@@ -320,7 +321,7 @@
       reloadPool();
     });
 
-    // 模式切换
+    // Mode switch
     $('mode-seg').querySelectorAll('.seg-btn').forEach(function (b) {
       if (b.getAttribute('data-mode') === W.mode) b.classList.add('active');
       b.addEventListener('click', function () {
@@ -349,7 +350,7 @@
     if (!box) return;
     box.innerHTML = '';
     if (!W.pool.length) {
-      box.innerHTML = '<div class="card"><div class="card-body"><p class="hint">该主题暂无单词。</p></div></div>';
+      box.innerHTML = '<div class="card"><div class="card-body"><p class="hint">No words in this theme yet.</p></div></div>';
       return;
     }
     if (W.mode === 'flash') renderFlash(box);
@@ -357,14 +358,14 @@
     else renderSpell(box);
   }
 
-  // ---------- 闪卡 ----------
+  // ---------- Flashcards ----------
   function renderFlash(box) {
     var w = W.pool[W.idx];
     box.appendChild($('tpl-flash').content.cloneNode(true));
 
     $('flash-progress').textContent = progressText();
     var mastered = Store.isMastered(w.nl);
-    $('flash-mastered').textContent = mastered ? '★ 已掌握' : '';
+    $('flash-mastered').textContent = mastered ? '* Mastered' : '';
     $('flash-nl').textContent = w.nl;
 
     var speak = $('flash-speak');
@@ -376,11 +377,11 @@
 
     var back = $('flash-back');
     back.hidden = !W.flipped;
-    $('flash-hint').textContent = W.flipped ? '点击卡片收起' : '点击卡片翻面';
+    $('flash-hint').textContent = W.flipped ? 'Tap the card to hide' : 'Tap the card to flip';
     if (W.flipped) {
-      $('flash-zh').textContent = w.zh;
+      $('flash-en').textContent = w.en;
       $('flash-ex-nl').textContent = w.ex_nl || '';
-      $('flash-ex-zh').textContent = w.ex_zh || '';
+      $('flash-ex-en').textContent = w.ex_en || '';
       var se = $('flash-speak-ex');
       if (w.ex_nl && TTS.available) {
         se.hidden = false;
@@ -394,7 +395,7 @@
     });
 
     var mBtn = $('flash-master');
-    mBtn.textContent = mastered ? '取消掌握' : '标记已掌握';
+    mBtn.textContent = mastered ? 'Unmark' : 'Mark as mastered';
     mBtn.className = 'btn ' + (mastered ? 'red' : 'green');
     mBtn.addEventListener('click', function () {
       Store.toggleMastered(w.nl);
@@ -413,10 +414,10 @@
     });
   }
 
-  // ---------- 双向选择 ----------
+  // ---------- Two-way multiple choice ----------
   function buildChoice(w) {
     W.dir = Math.random() < 0.5;
-    var key = W.dir ? 'zh' : 'nl';
+    var key = W.dir ? 'en' : 'nl';
     var correct = w[key];
     var others = WORDS.filter(function (x) { return x[key] !== correct; })
                       .map(function (x) { return x[key]; });
@@ -434,12 +435,12 @@
 
   function drawChoice(box, w) {
     box.innerHTML = '';
-    var prompt = W.dir ? w.nl : w.zh;
-    var ask = W.dir ? '选择对应的中文' : '选择对应的荷兰语';
+    var prompt = W.dir ? w.nl : w.en;
+    var ask = W.dir ? 'Pick the matching English' : 'Pick the matching Dutch';
 
     var head = document.createElement('div');
     head.className = 'card';
-    head.innerHTML = '<div class="card-head"><span class="muted">' + progressText() + '</span></div>' +
+    head.innerHTML = '<div class="card-head"><span class="muted">' + progressText() +'</span></div>' +
                      '<div class="card-body"><p class="prompt-ask">' + ask + '</p>' +
                      '<div class="word-nl">' + esc(prompt) + '</div></div>';
     box.appendChild(head);
@@ -449,7 +450,7 @@
       sp.className = 'speak-btn';
       sp.style.display = 'block';
       sp.style.margin = '0 auto 12px';
-      sp.textContent = '🔊 朗读';
+      sp.textContent = 'Listen';
       sp.addEventListener('click', function () { TTS.speak(w.nl); });
       box.appendChild(sp);
     }
@@ -477,14 +478,14 @@
         var ex = document.createElement('div');
         ex.className = 'card';
         ex.innerHTML = '<div class="ex-nl" style="margin-top:0">' + esc(w.ex_nl) + '</div>' +
-                       '<div class="ex-zh">' + esc(w.ex_zh || '') + '</div>';
+                       '<div class="ex-en">' + esc(w.ex_en || '') + '</div>';
         box.appendChild(ex);
       }
       box.appendChild(nextBtn());
     }
   }
 
-  // ---------- 拼写 ----------
+  // ---------- Spelling ----------
   function renderSpell(box) {
     var w = W.pool[W.idx];
     box.innerHTML = '';
@@ -492,19 +493,19 @@
     var card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = '<div class="card-head"><span class="muted">' + progressText() + '</span></div>' +
-                     '<div class="card-body"><p class="prompt-ask">根据中文写出荷兰语</p>' +
-                     '<div class="word-zh" style="margin-top:6px">' + esc(w.zh) + '</div></div>';
+                     '<div class="card-body"><p class="prompt-ask">Write the Dutch word for this meaning</p>' +
+                     '<div class="word-en" style="margin-top:6px">' + esc(w.en) + '</div></div>';
     box.appendChild(card);
 
     var input = document.createElement('input');
     input.className = 'spell-input';
     input.type = 'text';
-    // 关闭移动端自动纠错/首字母大写,否则荷兰语单词常被输入法改掉
+    // Turn off mobile autocorrect/capitalisation, otherwise Dutch words get rewritten
     input.setAttribute('autocapitalize', 'none');
     input.setAttribute('autocorrect', 'off');
     input.setAttribute('autocomplete', 'off');
     input.setAttribute('spellcheck', 'false');
-    input.placeholder = '输入荷兰语';
+    input.placeholder = 'Type the Dutch word';
     box.appendChild(input);
 
     var res = document.createElement('p');
@@ -515,10 +516,10 @@
     row.className = 'row-btns';
     var submit = document.createElement('button');
     submit.className = 'btn';
-    submit.textContent = '提交';
+    submit.textContent = 'Submit';
     var skip = document.createElement('button');
     skip.className = 'btn grey';
-    skip.textContent = '跳过 / 下一题';
+    skip.textContent = 'Skip / next';
     skip.addEventListener('click', nextQA);
     row.appendChild(submit);
     row.appendChild(skip);
@@ -530,14 +531,14 @@
       W.answered = true;
       Store.recordAnswer('woorden', ok);
       res.className = 'result ' + (ok ? 'right' : 'wrong');
-      res.textContent = ok ? '✓ 正确!' : '✗ 正确答案:' + w.nl;
+      res.textContent = ok ? 'Correct!' : 'Correct answer: ' + w.nl;
       input.blur();
       if (TTS.available) TTS.speak(w.nl);
       if (w.ex_nl) {
         var ex = document.createElement('div');
         ex.className = 'card';
         ex.innerHTML = '<div class="ex-nl" style="margin-top:0">' + esc(w.ex_nl) + '</div>' +
-                       '<div class="ex-zh">' + esc(w.ex_zh || '') + '</div>';
+                       '<div class="ex-en">' + esc(w.ex_en || '') + '</div>';
         box.appendChild(ex);
       }
       box.appendChild(nextBtn());
@@ -552,7 +553,7 @@
   function nextBtn() {
     var b = document.createElement('button');
     b.className = 'btn block';
-    b.textContent = '下一题';
+    b.textContent = 'Next';
     b.addEventListener('click', nextQA);
     return b;
   }
@@ -563,7 +564,7 @@
     renderPractice();
   }
 
-  // ===================== 路由 =====================
+  // ===================== Routing =====================
   var current = 'dashboard';
 
   function navigate(route) {
@@ -577,21 +578,21 @@
 
     document.querySelectorAll('.tab').forEach(function (t) {
       var r = t.getAttribute('data-route');
-      // daily-words 等子页面也要点亮「今日」tab
+      // Sub-pages such as daily-words must still highlight the "Today" tab
       t.classList.toggle('active', r === route || (r === 'daily' && route.indexOf('daily') === 0));
     });
     window.scrollTo(0, 0);
-    // 用 hash 记路由,手机端系统返回手势/返回键才能退回上一页
+    // Keep the route in the hash so the system back gesture/button works on mobile
     if (('#' + route) !== location.hash) {
       location.hash = route;
     }
   }
 
-  // ===================== 启动 =====================
+  // ===================== Bootstrap =====================
   function init() {
     Store.load();
 
-    // 供 daily.js 复用:进度存储、朗读、转义与路由
+    // Shared with daily.js: progress store, speech, escaping and routing
     window.AppBridge = {
       Store: Store,
       TTS: TTS,
@@ -614,11 +615,11 @@
 
     if (TTS.available) {
       TTS.pickVoice();
-      // Safari/Chrome 的语音列表是异步加载的,事件里再挑一次
+      // Safari/Chrome load the voice list asynchronously, so pick again on the event
       window.speechSynthesis.onvoiceschanged = function () { TTS.pickVoice(); };
     }
 
-    // 默认落在「今日学习」,打开就能直接开练
+    // Land on "Today" by default so the app opens straight into practice
     var start = (location.hash || '#daily').slice(1) || 'daily';
     navigate(start);
   }

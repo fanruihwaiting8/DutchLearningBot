@@ -1,84 +1,404 @@
 {
   "sentences": [
-    {"nl": "Ik zou graag een afspraak maken", "zh": "我想预约一下", "tag": "预约与电话"},
-    {"nl": "Kunt u dat nog een keer herhalen", "zh": "您能再重复一遍吗", "tag": "预约与电话"},
-    {"nl": "Ik bel over de vacature in de krant", "zh": "我是为报纸上的招聘打电话的", "tag": "预约与电话"},
-    {"nl": "Mag ik een boodschap doorgeven", "zh": "我可以留个话吗", "tag": "预约与电话"},
-    {"nl": "Ik hoor het graag zo snel mogelijk", "zh": "我希望尽快得到答复", "tag": "预约与电话"},
-    {"nl": "Het spijt me dat ik te laat ben", "zh": "很抱歉我迟到了", "tag": "预约与电话"},
-    {"nl": "Kunt u mij doorverbinden met de afdeling", "zh": "您能把我转到那个部门吗", "tag": "预约与电话"},
-    {"nl": "Ik ben vanmiddag niet bereikbaar", "zh": "我今天下午联系不上", "tag": "预约与电话"},
-    {"nl": "Ik heb al vijf dagen hoofdpijn", "zh": "我头疼已经五天了", "tag": "看病就医"},
-    {"nl": "De pijn wordt elke dag erger", "zh": "疼痛每天都在加重", "tag": "看病就医"},
-    {"nl": "Moet ik dit medicijn voor het eten nemen", "zh": "这个药要饭前吃吗", "tag": "看病就医"},
-    {"nl": "Ik wil graag een nieuwe afspraak bij de tandarts", "zh": "我想再约一次牙医", "tag": "看病就医"},
-    {"nl": "Mijn verzekering betaalt deze kosten niet", "zh": "我的保险不覆盖这笔费用", "tag": "看病就医"},
-    {"nl": "Ik slaap de laatste tijd heel slecht", "zh": "我最近睡得很不好", "tag": "看病就医"},
-    {"nl": "De arts heeft mij naar een specialist verwezen", "zh": "医生把我转诊给了专科医生", "tag": "看病就医"},
-    {"nl": "Ik voel me vandaag veel beter", "zh": "我今天感觉好多了", "tag": "看病就医"},
-    {"nl": "De huur is inclusief gas en licht", "zh": "房租包含燃气和电费", "tag": "住房"},
-    {"nl": "De verwarming in de woonkamer is kapot", "zh": "客厅的暖气坏了", "tag": "住房"},
-    {"nl": "Wanneer kan de reparatie worden gedaan", "zh": "维修什么时候能做", "tag": "住房"},
-    {"nl": "Wij zoeken een woning met drie kamers", "zh": "我们在找一套三居室", "tag": "住房"},
-    {"nl": "Krijg ik de borg na de verhuizing terug", "zh": "搬家后押金会退给我吗", "tag": "住房"},
-    {"nl": "Mijn buren maken elk weekend veel lawaai", "zh": "我的邻居每个周末都很吵", "tag": "住房"},
-    {"nl": "Ik heb het huurcontract nog niet ondertekend", "zh": "我还没有签租房合同", "tag": "住房"},
-    {"nl": "De woning is helaas al verhuurd", "zh": "很遗憾这套房已经租出去了", "tag": "住房"},
-    {"nl": "Ik heb vijf jaar ervaring in de logistiek", "zh": "我在物流行业有五年经验", "tag": "工作"},
-    {"nl": "Ik werk graag zelfstandig maar ook in een team", "zh": "我喜欢独立工作,也能团队协作", "tag": "工作"},
-    {"nl": "Mijn contract loopt in juni af", "zh": "我的合同六月到期", "tag": "工作"},
-    {"nl": "Ik ben op zaterdag beschikbaar maar niet op zondag", "zh": "我周六可以上班,周日不行", "tag": "工作"},
-    {"nl": "Kan ik volgende week met de proeftijd beginnen", "zh": "我下周可以开始试用期吗", "tag": "工作"},
-    {"nl": "Ik moet deze week twee avonden overwerken", "zh": "我这周有两个晚上要加班", "tag": "工作"},
-    {"nl": "De vergadering is naar donderdag verplaatst", "zh": "会议改到周四了", "tag": "工作"},
-    {"nl": "Ik stuur u mijn cv vandaag per e-mail", "zh": "我今天用邮件把简历发给您", "tag": "工作"},
-    {"nl": "Ik wil mijn verhuizing graag doorgeven", "zh": "我想申报我的搬迁信息", "tag": "政府手续"},
-    {"nl": "Moet ik hiervoor een afspraak maken", "zh": "这件事需要预约吗", "tag": "政府手续"},
-    {"nl": "Mijn paspoort is vorige maand verlopen", "zh": "我的护照上个月过期了", "tag": "政府手续"},
-    {"nl": "Welke documenten moet ik meenemen", "zh": "我需要带哪些文件", "tag": "政府手续"},
-    {"nl": "Hoe lang duurt de behandeling van mijn aanvraag", "zh": "我的申请要多久才能处理完", "tag": "政府手续"},
-    {"nl": "Ik heb het formulier online al ingevuld", "zh": "我已经在线填好表格了", "tag": "政府手续"},
-    {"nl": "Is deze kaart nog een jaar geldig", "zh": "这张卡还有一年有效期吗", "tag": "政府手续"},
-    {"nl": "Ik wil een klacht indienen over de bezorging", "zh": "我想就配送问题提出投诉", "tag": "政府手续"},
-    {"nl": "De trein naar Utrecht heeft tien minuten vertraging", "zh": "去乌特勒支的火车晚点十分钟", "tag": "出行"},
-    {"nl": "Moet ik in Amsterdam overstappen", "zh": "我需要在阿姆斯特丹换乘吗", "tag": "出行"},
-    {"nl": "Vanaf welk perron vertrekt de trein", "zh": "火车从哪个站台发车", "tag": "出行"},
-    {"nl": "Ik ga meestal met de fiets naar mijn werk", "zh": "我通常骑车去上班", "tag": "出行"},
-    {"nl": "Hier mag je niet parkeren", "zh": "这里不许停车", "tag": "出行"},
-    {"nl": "Door de file ben ik een uur later", "zh": "因为堵车我晚了一个小时", "tag": "出行"},
-    {"nl": "Kunt u mij vertellen waar de halte is", "zh": "您能告诉我车站在哪儿吗", "tag": "出行"},
-    {"nl": "Mijn koffer is te zwaar voor het vliegtuig", "zh": "我的行李箱对飞机来说太重了", "tag": "出行"},
-    {"nl": "Deze producten zijn deze week in de aanbieding", "zh": "这些商品本周在打折", "tag": "购物"},
-    {"nl": "Krijg ik korting met deze klantenkaart", "zh": "用这张会员卡有折扣吗", "tag": "购物"},
-    {"nl": "Kan ik dit zonder bon ruilen", "zh": "没有小票能换货吗", "tag": "购物"},
-    {"nl": "Het pakket is helaas nooit aangekomen", "zh": "包裹很遗憾一直没到", "tag": "购物"},
-    {"nl": "Ik betaal liever met mijn pinkaart", "zh": "我更想用银行卡付款", "tag": "购物"},
-    {"nl": "Hoeveel bezorgkosten komen er bij", "zh": "还要加多少配送费", "tag": "购物"},
-    {"nl": "Dat is mij echt te duur", "zh": "那对我来说确实太贵了", "tag": "购物"},
-    {"nl": "Ik neem liever het goedkopere model", "zh": "我更愿意要便宜一些的型号", "tag": "购物"},
-    {"nl": "Ik volg sinds september een taalcursus", "zh": "我从九月起在上语言课", "tag": "学习"},
-    {"nl": "Ik begrijp de vraag niet helemaal", "zh": "这个问题我没完全听懂", "tag": "学习"},
-    {"nl": "Kunt u dat langzamer uitleggen", "zh": "您能讲得慢一点吗", "tag": "学习"},
-    {"nl": "Ik leer elke dag twintig minuten woorden", "zh": "我每天背二十分钟单词", "tag": "学习"},
-    {"nl": "Het examen bestaat uit vier onderdelen", "zh": "考试由四个部分组成", "tag": "学习"},
-    {"nl": "Ik ben zenuwachtig voor het examen", "zh": "我对考试很紧张", "tag": "学习"},
-    {"nl": "Deze oefening vind ik het moeilijkst", "zh": "这个练习我觉得最难", "tag": "学习"},
-    {"nl": "Ik wil mijn grammatica verbeteren", "zh": "我想提高我的语法", "tag": "学习"},
-    {"nl": "Wij eten vanavond bij mijn ouders", "zh": "我们今晚在我父母家吃饭", "tag": "日常生活"},
-    {"nl": "Ik moet nog boodschappen doen voor morgen", "zh": "我还得为明天买些东西", "tag": "日常生活"},
-    {"nl": "Het papier moet in een andere container", "zh": "纸要放到另一个垃圾桶里", "tag": "日常生活"},
-    {"nl": "Vanmiddag ga ik de keuken schoonmaken", "zh": "今天下午我要打扫厨房", "tag": "日常生活"},
-    {"nl": "Het regent al de hele dag", "zh": "已经下了一整天的雨", "tag": "日常生活"},
-    {"nl": "Neem je jas mee want het waait hard", "zh": "带上外套,风很大", "tag": "日常生活"},
-    {"nl": "Wij hebben gisteren een gezellige avond gehad", "zh": "我们昨晚过得很愉快", "tag": "日常生活"},
-    {"nl": "Ik heb vandaag geen tijd om te koken", "zh": "我今天没时间做饭", "tag": "日常生活"},
-    {"nl": "Mag ik u iets vragen", "zh": "我能问您点事吗", "tag": "礼貌与社交"},
-    {"nl": "Dat is heel aardig van u", "zh": "您真是太好了", "tag": "礼貌与社交"},
-    {"nl": "Ik ben het niet helemaal met je eens", "zh": "我不完全同意你的看法", "tag": "礼貌与社交"},
-    {"nl": "Volgens mij is dat een goed idee", "zh": "我觉得这是个好主意", "tag": "礼貌与社交"},
-    {"nl": "Zou je mij even kunnen helpen", "zh": "你能帮我一下吗", "tag": "礼貌与社交"},
-    {"nl": "Ik wil me verontschuldigen voor het misverstand", "zh": "我想为这个误会道歉", "tag": "礼貌与社交"},
-    {"nl": "Laten we daar later over praten", "zh": "我们稍后再谈这个吧", "tag": "礼貌与社交"},
-    {"nl": "Bedankt voor uw snelle antwoord", "zh": "感谢您的快速答复", "tag": "礼貌与社交"}
+    {
+      "nl": "Ik zou graag een afspraak maken",
+      "en": "I would like to make an appointment",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Kunt u dat nog een keer herhalen",
+      "en": "Could you repeat that one more time",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Ik bel over de vacature in de krant",
+      "en": "I am calling about the vacancy in the newspaper",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Mag ik een boodschap doorgeven",
+      "en": "May I leave a message",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Ik hoor het graag zo snel mogelijk",
+      "en": "I would like to hear from you as soon as possible",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Het spijt me dat ik te laat ben",
+      "en": "I am sorry that I am late",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Kunt u mij doorverbinden met de afdeling",
+      "en": "Could you put me through to the department",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Ik ben vanmiddag niet bereikbaar",
+      "en": "I am not reachable this afternoon",
+      "tag": "Appointments & phone calls"
+    },
+    {
+      "nl": "Ik heb al vijf dagen hoofdpijn",
+      "en": "I have had a headache for five days",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "De pijn wordt elke dag erger",
+      "en": "The pain gets worse every day",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "Moet ik dit medicijn voor het eten nemen",
+      "en": "Do I have to take this medicine before eating",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "Ik wil graag een nieuwe afspraak bij de tandarts",
+      "en": "I would like a new appointment at the dentist",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "Mijn verzekering betaalt deze kosten niet",
+      "en": "My insurance does not cover these costs",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "Ik slaap de laatste tijd heel slecht",
+      "en": "I have been sleeping very badly lately",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "De arts heeft mij naar een specialist verwezen",
+      "en": "The doctor has referred me to a specialist",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "Ik voel me vandaag veel beter",
+      "en": "I feel much better today",
+      "tag": "Health & doctor visits"
+    },
+    {
+      "nl": "De huur is inclusief gas en licht",
+      "en": "The rent includes gas and electricity",
+      "tag": "Housing"
+    },
+    {
+      "nl": "De verwarming in de woonkamer is kapot",
+      "en": "The heating in the living room is broken",
+      "tag": "Housing"
+    },
+    {
+      "nl": "Wanneer kan de reparatie worden gedaan",
+      "en": "When can the repair be done",
+      "tag": "Housing"
+    },
+    {
+      "nl": "Wij zoeken een woning met drie kamers",
+      "en": "We are looking for a home with three rooms",
+      "tag": "Housing"
+    },
+    {
+      "nl": "Krijg ik de borg na de verhuizing terug",
+      "en": "Will I get the deposit back after moving out",
+      "tag": "Housing"
+    },
+    {
+      "nl": "Mijn buren maken elk weekend veel lawaai",
+      "en": "My neighbours make a lot of noise every weekend",
+      "tag": "Housing"
+    },
+    {
+      "nl": "Ik heb het huurcontract nog niet ondertekend",
+      "en": "I have not signed the rental contract yet",
+      "tag": "Housing"
+    },
+    {
+      "nl": "De woning is helaas al verhuurd",
+      "en": "Unfortunately the home has already been rented out",
+      "tag": "Housing"
+    },
+    {
+      "nl": "Ik heb vijf jaar ervaring in de logistiek",
+      "en": "I have five years of experience in logistics",
+      "tag": "Work"
+    },
+    {
+      "nl": "Ik werk graag zelfstandig maar ook in een team",
+      "en": "I like working independently but also in a team",
+      "tag": "Work"
+    },
+    {
+      "nl": "Mijn contract loopt in juni af",
+      "en": "My contract ends in June",
+      "tag": "Work"
+    },
+    {
+      "nl": "Ik ben op zaterdag beschikbaar maar niet op zondag",
+      "en": "I am available on Saturday but not on Sunday",
+      "tag": "Work"
+    },
+    {
+      "nl": "Kan ik volgende week met de proeftijd beginnen",
+      "en": "Can I start the trial period next week",
+      "tag": "Work"
+    },
+    {
+      "nl": "Ik moet deze week twee avonden overwerken",
+      "en": "I have to work overtime two evenings this week",
+      "tag": "Work"
+    },
+    {
+      "nl": "De vergadering is naar donderdag verplaatst",
+      "en": "The meeting has been moved to Thursday",
+      "tag": "Work"
+    },
+    {
+      "nl": "Ik stuur u mijn cv vandaag per e-mail",
+      "en": "I will send you my CV by email today",
+      "tag": "Work"
+    },
+    {
+      "nl": "Ik wil mijn verhuizing graag doorgeven",
+      "en": "I would like to report my change of address",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "Moet ik hiervoor een afspraak maken",
+      "en": "Do I need to make an appointment for this",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "Mijn paspoort is vorige maand verlopen",
+      "en": "My passport expired last month",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "Welke documenten moet ik meenemen",
+      "en": "Which documents do I have to bring",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "Hoe lang duurt de behandeling van mijn aanvraag",
+      "en": "How long does the processing of my application take",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "Ik heb het formulier online al ingevuld",
+      "en": "I have already filled in the form online",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "Is deze kaart nog een jaar geldig",
+      "en": "Is this card still valid for another year",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "Ik wil een klacht indienen over de bezorging",
+      "en": "I want to file a complaint about the delivery",
+      "tag": "Government paperwork"
+    },
+    {
+      "nl": "De trein naar Utrecht heeft tien minuten vertraging",
+      "en": "The train to Utrecht is ten minutes delayed",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Moet ik in Amsterdam overstappen",
+      "en": "Do I have to change trains in Amsterdam",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Vanaf welk perron vertrekt de trein",
+      "en": "From which platform does the train leave",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Ik ga meestal met de fiets naar mijn werk",
+      "en": "I usually go to work by bike",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Hier mag je niet parkeren",
+      "en": "You are not allowed to park here",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Door de file ben ik een uur later",
+      "en": "Because of the traffic jam I am an hour late",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Kunt u mij vertellen waar de halte is",
+      "en": "Could you tell me where the stop is",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Mijn koffer is te zwaar voor het vliegtuig",
+      "en": "My suitcase is too heavy for the plane",
+      "tag": "Travel & transport"
+    },
+    {
+      "nl": "Deze producten zijn deze week in de aanbieding",
+      "en": "These products are on offer this week",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Krijg ik korting met deze klantenkaart",
+      "en": "Do I get a discount with this loyalty card",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Kan ik dit zonder bon ruilen",
+      "en": "Can I exchange this without a receipt",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Het pakket is helaas nooit aangekomen",
+      "en": "Unfortunately the parcel never arrived",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Ik betaal liever met mijn pinkaart",
+      "en": "I prefer to pay with my debit card",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Hoeveel bezorgkosten komen er bij",
+      "en": "How much delivery cost is added",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Dat is mij echt te duur",
+      "en": "That is really too expensive for me",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Ik neem liever het goedkopere model",
+      "en": "I would rather take the cheaper model",
+      "tag": "Shopping"
+    },
+    {
+      "nl": "Ik volg sinds september een taalcursus",
+      "en": "I have been taking a language course since September",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Ik begrijp de vraag niet helemaal",
+      "en": "I do not fully understand the question",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Kunt u dat langzamer uitleggen",
+      "en": "Could you explain that more slowly",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Ik leer elke dag twintig minuten woorden",
+      "en": "I learn words twenty minutes every day",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Het examen bestaat uit vier onderdelen",
+      "en": "The exam consists of four parts",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Ik ben zenuwachtig voor het examen",
+      "en": "I am nervous about the exam",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Deze oefening vind ik het moeilijkst",
+      "en": "I find this exercise the hardest",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Ik wil mijn grammatica verbeteren",
+      "en": "I want to improve my grammar",
+      "tag": "Studying"
+    },
+    {
+      "nl": "Wij eten vanavond bij mijn ouders",
+      "en": "We are eating at my parents tonight",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Ik moet nog boodschappen doen voor morgen",
+      "en": "I still have to do the groceries for tomorrow",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Het papier moet in een andere container",
+      "en": "The paper has to go in a different bin",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Vanmiddag ga ik de keuken schoonmaken",
+      "en": "This afternoon I am going to clean the kitchen",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Het regent al de hele dag",
+      "en": "It has been raining all day",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Neem je jas mee want het waait hard",
+      "en": "Take your coat with you because it is very windy",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Wij hebben gisteren een gezellige avond gehad",
+      "en": "We had a pleasant evening yesterday",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Ik heb vandaag geen tijd om te koken",
+      "en": "I have no time to cook today",
+      "tag": "Daily life"
+    },
+    {
+      "nl": "Mag ik u iets vragen",
+      "en": "May I ask you something",
+      "tag": "Politeness & socialising"
+    },
+    {
+      "nl": "Dat is heel aardig van u",
+      "en": "That is very kind of you",
+      "tag": "Politeness & socialising"
+    },
+    {
+      "nl": "Ik ben het niet helemaal met je eens",
+      "en": "I do not completely agree with you",
+      "tag": "Politeness & socialising"
+    },
+    {
+      "nl": "Volgens mij is dat een goed idee",
+      "en": "In my opinion that is a good idea",
+      "tag": "Politeness & socialising"
+    },
+    {
+      "nl": "Zou je mij even kunnen helpen",
+      "en": "Could you help me for a moment",
+      "tag": "Politeness & socialising"
+    },
+    {
+      "nl": "Ik wil me verontschuldigen voor het misverstand",
+      "en": "I want to apologise for the misunderstanding",
+      "tag": "Politeness & socialising"
+    },
+    {
+      "nl": "Laten we daar later over praten",
+      "en": "Let us talk about that later",
+      "tag": "Politeness & socialising"
+    },
+    {
+      "nl": "Bedankt voor uw snelle antwoord",
+      "en": "Thank you for your quick reply",
+      "tag": "Politeness & socialising"
+    }
   ]
 }

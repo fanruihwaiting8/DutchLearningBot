@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-"""核心层:数据加载、进度存储、语音封装。"""
+"""Core layer: data loading, progress storage and the speech wrapper."""

@@ -1,8 +1,8 @@
 {
-  "name": "荷兰语 B1 备考助手",
-  "short_name": "荷兰语B1",
-  "description": "荷兰语 B1 入籍考试备考:词汇闪卡、双向选择、拼写练习与就绪度看板",
-  "lang": "zh-CN",
+  "name": "Dutch B1 Exam Trainer",
+  "short_name": "Dutch B1",
+  "description": "Prepare for the Dutch B1 integration exam: vocabulary flashcards, two-way multiple choice, spelling drills and a readiness dashboard",
+  "lang": "en",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

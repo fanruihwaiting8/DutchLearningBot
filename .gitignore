@@ -5,17 +5,17 @@ __pycache__/
 *.pyc
 *.pyo
 
-# ===== 运行时产生的本地状态（桌面版学习进度，不入库）=====
+# ===== local runtime state (desktop learning progress, not committed) =====
 data/progress.json
 *.log
 
-# ===== 打包产物（含本机绝对路径，可按 README 重新生成）=====
+# ===== build output (contains machine-local absolute paths, see README) =====
 dist/
 build/
 *.app/
 *.zip
 
-# ===== 编辑器 / 系统 =====
+# ===== editor / system =====
 .DS_Store
 .idea/
 .vscode/
